@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<?Sparkle type="CocoScript" ?>
+<Sparkle>
+  <text x="150" y="150" bgColor="orange" textColor="white" width="150" height="50">My First Project!</text>
+  <button x="50" y="50" bgColor="orange" textColor="white" width="150" height="50">Click Me!</button>
+  <script>
+    diplay("CocoScript Activated");
+  </script>
+</Sparkle>

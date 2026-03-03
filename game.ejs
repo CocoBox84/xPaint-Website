@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Coco.ink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="/Coco Icon/Old Coco Icon.ico">
+  <link href="/CSS/homepage.css" rel="stylesheet">
+  <link href="/CSS/header.css" rel="stylesheet">
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <link href="/CSS/general.css" rel="stylesheet">
+  <link rel="stylesheet" href="/CSS/games.css">
+  <style>
+    body {
+      background-color: rgb(3, 84, 87);
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("/Images/Background2.png");
+      margin: 0px;
+      padding: 0px;
+      /*height: 3000px;*/
+      width: 100%;
+      /*max-width: 1200px;*/
+    }
+
+    #webpage {
+      position: absolute;
+      margin-top: 50px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-left: 12px;
+      margin-right: 12px;
+      bottom: 0;
+    }
+
+    /*#header {}*/
+
+    .header {
+      display: flex;
+      flex: 1;
+      height: 44px;
+      position: fixed;
+      z-index: 100;
+      margin-bottom: 50px;
+      background-color: lightgrey;
+      top: 0;
+      right: 0;
+      left: 0;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+      padding-top: 12px;
+      padding-left: 12px;
+      padding-bottom: 12px;
+      padding-right: 12px;
+      /* From https://css.glass */
+      background: rgba(211, 211, 211, 0.75);
+      /*border-radius: 16px;*/
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5.2px);
+      -webkit-backdrop-filter: blur(5.2px);
+      border: 1px solid rgba(211, 211, 211, 0.548);
+      border-bottom: 2px solid rgba(211, 211, 211, 0.548);
+    }
+
+
+    /*.box-product {
+            background-color: rgb(247, 243, 243);
+            /* grid-template-columns: 100px 1fr; */
+    /* width: 300px;
+                height: 300px; *
+            /*padding: 30px 3px 30px 40px;*
+            /* display: grid; *
+
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+            width: 300px;
+            height: 300px;
+
+            overflow-y: scroll;
+            overflow-x: scroll;
+        }*/
+
+    .box-product {
+      background-color: wheat;
+      /*margin-bottom: 50px;*/
+      border-radius: 30px;
+      padding: 12px;
+      margin: 12px;
+      margin-top: 100px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+    }
+
+    #Coco {
+      z-index: 101;
+      height: 38px;
+      padding-bottom: -20px;
+      padding-right: -100px;
+      opacity: 1;
+      transition: height 1.0s;
+      transition: opacity 1.0s;
+      /**/
+      transition: opacity 1.0s ease-in-out, height 1.0s ease-in-out;
+      /**/
+    }
+
+
+    #Coco:hover {
+      opacity: 0.10;
+      cursor: pointer;
+      height: 50px;
+      transition: opacity 1.0s;
+      transition: height 1.0s;
+      /**/
+      transition: opacity 1.0s ease-in-out, height 1.0s ease-in-out;
+      /**/
+    }
+
+    .product-img {
+      height: 120px;
+      width: 120px;
+      margin-left: 40px;
+      max-width: 100%;
+    }
+
+    .Welcome-text-left {
+      color: rgb(80, 80, 80);
+      font-size: 40px;
+      display: inline;
+      float: left;
+    }
+
+    /*
+                .Announcement {
+                    background-color: wheat;
+                    margin-top: 100px;
+                    margin-bottom: 50px;
+                }
+                    */
+  </style>
+</head>
+
+<body>
+  <div id="webpage">
+    <div id="header">
+      <header class="header">
+        <!--<button onclick="cocoSound();">Test</button>-->
+        <a href="/index.html" style="margin-right: 5px !important;"><img id="Coco" src="/Coco.svg" onmouseover="const audio = new Audio(`/Coco.wav`); audio.play()"></a>
+
+        <div class="left-header">
+          <% if (false) { %>
+          <div></div>
+          <a class="content-only-a" href="/Games/">
+            <button class="special-button">Games</button>
+          </a>
+          <button class="special-button">Productivity</button>
+          <button class="special-button">Creation</button>
+          <button class="special-button">Develop</button>
+          <% } else { %>
+          <a class="content-only-a" href="/about">
+            <button class="special-button">About</button>
+          </a>
+          <a class="content-only-a" href="/Downloads/">
+            <button class="special-button">Downloads</button>
+          </a>
+          <a class="content-only-a" href="/Search/?type=all&date=now&tags=all">
+            <button class="special-button">Search</button>
+          </a>
+          <% } %>
+        </div>
+
+        <div id="user-controls" class="right-header">
+          <% if (user !=null && user !=="" ) { %>
+          <ul style="align-items: center; justify-content: center; color: goldenrod;">
+            Welcome back <a href="/users/<%= user.username %>">
+              <%= user.username %>
+            </a>!
+          </ul>
+          <ul style="align-items: center; justify-content: center; color: goldenrod; margin-left: 15px; margin-top: 10px; padding: 0px !important;">
+            <a href="/messages"><img height="20px" src="/Stickers/Mail.stikr" alt="View your messages"></a>
+            <span>Or</span>
+            <a href="JavaScript:navBoxOpen('messages')"><img height="25px" src="/Stickers/Write.stikr" alt="Write a message"></a>
+          </ul>
+          <a class="content-only-a" href="/manage">
+            <button class="special-button header-right">Manage account</button>
+          </a>
+
+          <% if (user.role==="Admin" ) { %>
+          <a class="content-only-a" href="/admin/">
+            <button class="special-button">Open Admin Panel</button>
+          </a>
+          <% } %>
+
+          <% } else { %>
+          <a class="content-only-a" href="/login/">
+            <button id="sign-in" class="special-button header-right">Sign In</button>
+          </a>
+          <a class="content-only-a" href="/register/">
+            <button class="special-button">Create Account</button>
+          </a>
+          <% } %>
+
+        </div>
+
+      </header>
+    </div>
+    <div id="welcome">
+
+      <div id="main-nav-box">
+      </div>
+
+      <div id="game-container">
+        <div id="top">
+          <a href="/Games/">&lt;- Game library</a> <br>
+          <span id="game-title"><%= game.name %></span>
+        </div>
+        <div id="game-box">
+          <% if (game.canPlayOnline) { %>
+          <div id="player">
+            <% if (game.type == "flash") { %>
+            <div id="player-content">
+              <style type="text/css" media="screen">
+                #flashContent {
+                  width: 100%;
+                  height: 100%;
+                  z-index: 1000;
+                }
+              </style>
+              <div id="flashContent">
+                <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="100%" height="100%" id="FlashApp" align="middle">
+                  <param name="movie" value="<%= game.src %>" />
+                  <param name="quality" value="high" />
+                  <param name="play" value="true" />
+                  <param name="loop" value="true" />
+                  <param name="wmode" value="gpu" />
+                  <param name="scale" value="showall" />
+                  <param name="menu" value="true" />
+                  <param name="devicefont" value="false" />
+                  <param name="salign" value="" />
+                  <param name="allowScriptAccess" value="sameDomain" />
+                  <!--[if !IE]>-->
+                  <object type="application/x-shockwave-flash" data="<%= game.src %>" width="100%" height="100%">
+                    <param name="movie" value="<%= game.src %>" />
+                    <param name="quality" value="high" />
+                    <param name="play" value="true" />
+                    <param name="loop" value="true" />
+                    <param name="wmode" value="gpu" />
+                    <param name="scale" value="showall" />
+                    <param name="menu" value="true" />
+                    <param name="devicefont" value="false" />
+                    <param name="salign" value="" />
+                    <param name="allowScriptAccess" value="sameDomain" />
+                    <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflash">
+                      <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+                    </a>
+                    <!--[if !IE]>-->
+                  </object>
+                  <!--<![endif]-->
+                </object>
+                <script>
+                  (function() {
+                    const cdn = document.createElement('script');
+                    cdn.src = "https://unpkg.com/@ruffle-rs/ruffle";
+
+                    cdn.onload = () => console.log("Ruffle loaded from CDN");
+                    cdn.onerror = () => {
+                      console.warn("CDN failed, loading local Ruffle");
+                      const local = document.createElement('script');
+                      local.src = "/static/ruffle/ruffle.js";
+                      document.head.appendChild(local);
+                    };
+
+                    document.head.appendChild(cdn);
+                  })();
+                </script>
+              </div>
+            </div>
+            <%} else {%>
+            <div id="download-prompt">
+              <h1>(Server side error) This game cannot be played, the type is invalid!</h1>
+              <h3>Check to see if the game is downloadable.</h3>
+              <h4>Downloads:</h4>
+              <ul>
+                <% game.downloads.forEach((download) => { %>
+                <li>
+                  <a href="<%- download.url %>">
+                    <%- download.name %>
+                  </a>
+                </li>
+                <% }); %>
+              </ul>
+            </div>
+            <%}%>
+          </div>
+          <% } else { %>
+            <!-- Download prompt needs to be on top -->
+            <div id="download-prompt">
+              <h1>This game cannot be played online!</h1>
+              <h3>Download in order to play!</h3>
+              <h4>Downloads:</h4>
+              <ul>
+                <% game.downloads.forEach((download) => { %>
+                <li>
+                  <a href="<%- download.url %>">
+                    <%- download.name %>
+                  </a>
+                </li>
+                <% }); %>
+              </ul>
+            </div>
+            <img id="image" src="/api/games/<%= game.id %>/thumbnail">
+            <% } %>
+          </div>
+          <div id="bottom">
+            <button class="special-button" style="margin-right: 13px;" onclick="toggleFullscreen();">Enter/Exit Fullscreen</button>
+            <button class="special-button">Like</button>
+            <button class="special-button">Add to favorites</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="bottom-section" class="hide">
+        <!--<div id="comments">
+          <h2>Comments:</h2>
+          <p>(Let me know how my games are!)</p>
+          <textarea id="comment-prompt" placeholder="Enter your comment (500 characters):"></textarea>
+        </div>
+        <div id="more"></div>-->
+      </div>
+
+      <footer class="box-product">
+        <div id="footer-content">
+          <p>Coco.ink © 2025 Coco Ink Software. All rights reserved.</p>
+        </div>
+        <h4>
+          Want to know more about me? <a href="/faq">FactsAndQuestions</a>.
+          You can also see my <a href="/family">family</a>.
+        </h4>
+      </footer>
+
+    </div>
+
+    <div id="error-container" class="error-container-hide">
+      Some Scripts Have Probably Crashed
+      <div id="e" class="error big-box"></div>
+    </div>
+    <!---->
+    <script src="/Ambler.mp3Sound.js"></script>
+    <script src="/JS/global.js"></script>
+    <!---->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        /* Aa *
+        showError(); /* Aa */
+        /* Aa */
+        showMessage();
+      });
+
+      function showError() {
+        document.getElementById("e").innerHTML = `Oops! Something Crashed!`;
+        var errorContainer = document.getElementById("error-container");
+        errorContainer.classList.remove("error-container-hide");
+        errorContainer.classList.add("error-container-show");
+      }
+
+      function hideError() {
+        document.getElementById("e").innerHTML = ``;
+        var errorContainer = document.getElementById("error-container");
+        errorContainer.classList.remove("error-container-show");
+        errorContainer.classList.add("error-container-hide");
+      }
+
+      function showMessage(messageAtIndex) {
+        var messageBox;
+        switch (messageAtIndex) {
+          case 5:
+            //
+            break;
+        }
+      }
+    </script>
+    <script>
+      console.log(`At: ${window.location.pathname}`);
+      if (window.location.pathname.includes('index.html')) window.location.href = window.location.pathname.replace('index.html', '');
+    </script>
+    <!--<script src="/Scripts/spawnNewstuff.js" type="module"></script>-->
+    <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+    <!--<script type="module" src="/Scripts/bodyScripts.js"></script>-->
+    <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <script>
+      const errorMessageContainer = document.getElementById("error-container");
+
+      function clearError() {
+        errorMessageContainer.classList.remove("error-container-show");
+        errorMessageContainer.classList.add("error-container-hide");
+        document.getElementById("e").innerHTML = ``;
+        var errorContainer = document.getElementById("error-container");
+        errorContainer.classList.remove("error-container-show");
+        errorContainer.classList.add("error-container-hide");
+      };
+
+      clearError();
+    </script>
+    <script>
+      function toggleFullscreen() {
+        window.document.getElementById("game-container").classList.toggle('fullscreen');
+      }
+    </script>
+</body>
+
+</html>

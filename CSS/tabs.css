@@ -1,0 +1,167 @@
+/* tabs.css */
+
+#intro {
+    display: flex;
+}
+
+#left-box {
+    flex: 1;
+}
+
+#right-box {
+    flex: 5;
+}
+
+#box-body {
+    background-color: white;
+    padding: 0px;
+    border: rgb(230, 230, 230) 2px solid;
+    border-top: none;
+    height: 100%;
+}
+
+#box-body-top {
+    background-color: rgb(224, 224, 224);
+    border: rgb(230, 230, 230) 2px solid;
+    border-top: none;
+    color: rgb(48, 48, 48);
+    padding: 5px;
+}
+
+.box-head {
+    background-color: rgb(192, 192, 192);
+}
+
+input[type="search"] {
+    outline-color: rgba(255, 255, 255, 0);
+    border: none;
+    margin: 2px;
+    border-color: aliceblue;
+    transition: outline-color 1s, border-color 1s, box-shadow linear .2s;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.712);
+    width: 100%;
+}
+
+input[type="search"]:hover {
+    border: 2px #1aa0d8 solid;
+    outline-color: #1aa0d8;
+    margin: 0px;
+}
+
+.tabs {
+    background-color: rgb(202, 202, 202);
+    list-style: none;
+    padding: 2px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-right: 0px;
+}
+
+.tab {
+    background-color: rgb(224, 224, 224);
+    color: rgba(0, 0, 0, 0.712);
+    content: "";
+    padding: 20px;
+    font-size: larger;
+    margin-bottom: 1px;
+}
+
+.tab:hover {
+    background-color: rgb(240, 240, 240);
+    margin-bottom: 0px;
+    margin-top: -1px;
+    box-shadow: outset 10px -10px 50px rgb(75, 75, 75);
+    border-top: rgb(180, 180, 180) 1px solid;
+    border-bottom: rgb(180, 180, 180) 1px solid;
+}
+
+.tab:active {
+    background-color: rgb(175, 175, 175);
+    margin-bottom: 0px;
+    margin-top: -1px;
+    box-shadow: outset 10px -10px 50px rgb(75, 75, 75);
+    border-top: rgb(180, 180, 180) 1px solid;
+    border-bottom: rgb(180, 180, 180) 1px solid;
+}
+
+.tab.active {
+    background-color: rgb(71, 71, 71);
+    text-shadow: none;
+    color: white;
+}
+
+.tab.first {
+    border-top-left-radius: 10px;
+}
+
+.tab.last {
+    border-bottom-left-radius: 10px;
+    box-shadow: outset 10px -10px 2px rgb(29, 29, 29);
+}
+
+.tab.last:hover {
+    border-bottom-color: rgb(150, 150, 150);
+}
+
+/* Board tabs */
+
+#board .tabs {
+    background-color: rgb(83, 62, 5);
+    list-style: none;
+    padding: 2px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-right: 0px;
+    width: 230px;
+    text-shadow: none;
+}
+
+#board .tab {
+    background-color: rgb(150, 112, 9);
+    color: white !important;
+    content: "";
+    padding: 20px;
+    font-size: larger;
+    margin-bottom: 1px;
+    background-size: 20px 20px;
+    background-image: url("/Images/board_texture.png");
+}
+
+#board .tab:hover {
+    background-color: rgb(114, 85, 6);
+    margin-bottom: 0px;
+    margin-top: -1px;
+    box-shadow: outset 10px -10px 50px rgba(85, 55, 1, 0.425);
+    border-top: rgb(43, 33, 0) 1px solid;
+    border-bottom: rgb(41, 27, 0) 1px solid;
+}
+
+#board .tab:active {
+    background-color: rgb(65, 45, 1);
+    margin-bottom: 0px;
+    margin-top: -1px;
+    box-shadow: outset 10px -10px 50px rgb(49, 26, 0);
+    border-top: rgb(43, 33, 0) 1px solid;
+    border-bottom: rgb(41, 27, 0) 1px solid;
+}
+
+#board .tab.active {
+    background-color: rgb(77, 59, 0);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+    color: white;
+}
+
+#board .tab.first {
+    border-top-left-radius: 10px;
+}
+
+#board .tab.last {
+    border-bottom-left-radius: 10px;
+    box-shadow: outset 10px -10px 2px rgb(29, 29, 29);
+}
+
+#board .tab.last:hover {
+    border-bottom-color: rgb(44, 29, 1);
+}

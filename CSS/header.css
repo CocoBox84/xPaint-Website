@@ -1,0 +1,74 @@
+.header {
+    display: grid;
+    grid-template-columns: 1fr 10fr 10fr;
+    row-gap: 12px;
+    column-gap: 12px;
+    flex: 1;
+    height: 44px;
+    padding: 12px !important;
+    border: 1px solid rgba(211, 211, 211, 0.548);
+    flex: 1 !important;
+    height: 44px !important;
+    /*position: fixed !important;*/
+    z-index: 100 !important;
+    /* From https://css.glass */
+    background: rgba(211, 211, 211, 0.75) !important;
+    /*border-radius: 16px;*/
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(5.2px) !important;
+    -webkit-backdrop-filter: blur(5.2px) !important;
+    border: 1px solid rgba(211, 211, 211, 0.548) !important;
+    border-bottom: 2px solid rgba(211, 211, 211, 0.548) !important;
+    backdrop-filter: blur(3.2px) !important;
+    -webkit-backdrop-filter: blur(5.2px) !important;
+    background: rgba(211, 211, 211, 0.253) !important;
+    background: rgba(211, 211, 211, 0.75) !important;
+    background-color: lightgrey !important;
+    margin-bottom: 50px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418) !important;
+    /*background-image: url("https://web.archive.org/web/20110221164753im_/http://wwwimages.adobe.com/homepage/include/style/default/SiteHeader/tile.png");*/
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+
+#header {
+    position: fixed;
+    z-index: 1000;
+    margin-bottom: 50px;
+    background: none !important;
+    right: 0;
+    left: 0;
+    top: 0;
+    right: 0 !important;
+    left: 0 !important;
+    position: fixed;
+    animation-name: slideDown;
+    animation-duration: 500ms;
+}
+
+@supports (display: flex) {
+    .header {
+        display: flex !important;
+    }
+}
+
+@supports (backdrop-filter: blur(1px)) {
+    .header {
+        background-color: rgba(211, 211, 211, 0.253) !important;
+        background: rgba(211, 211, 211, 0.75) !important;
+    }
+}
+
+.left-header {
+    display: flex;
+    flex: 1;
+    /*background-color: aqua;*/
+    justify-content: start;
+}
+
+.right-header {
+    display: flex;
+    flex: 3;
+    /*background-color: red;*/
+    justify-content: end;
+}

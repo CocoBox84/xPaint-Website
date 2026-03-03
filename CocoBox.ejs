@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+
+<% const username = (user) ? user["username"] : ''; %>
+
+<head>
+  <title>Welcome to CocoBox!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="/Coco Icon/Old Coco Icon.ico">
+  <link href="/CSS/homepage.css" rel="stylesheet">
+  <link href="/CSS/header.css" rel="stylesheet">
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <link href="/CSS/general.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: grey;
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("/Images/Background Dark.png");
+      margin: 0px;
+      padding: 0px;
+      /*height: 3000px;*/
+      width: 100%;
+      /*max-width: 1200px;*/
+    }
+
+    #webpage {
+      position: absolute;
+      margin-top: 50px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-left: 12px;
+      margin-right: 12px;
+      bottom: 0;
+    }
+
+    /*#header {}*/
+
+    /*.box-product {
+            background-color: rgb(247, 243, 243);
+            /* grid-template-columns: 100px 1fr; */
+    /* width: 300px;
+                height: 300px; *
+            /*padding: 30px 3px 30px 40px;*
+            /* display: grid; *
+
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+            width: 300px;
+            height: 300px;
+
+            overflow-y: scroll;
+            overflow-x: scroll;
+        }*/
+
+    .box-product {
+      background-color: wheat;
+      /*margin-bottom: 50px;*/
+      border-radius: 30px;
+      padding: 12px;
+      margin: 12px;
+      margin-top: 100px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+    }
+
+    #Coco {
+      z-index: 101;
+      height: 38px;
+      padding-bottom: -20px;
+      padding-right: -100px;
+      opacity: 1;
+      transition: height 1.0s;
+      transition: opacity 1.0s;
+      /**/
+      transition: opacity 1.0s ease-in-out, height 1.0s ease-in-out;
+      /**/
+    }
+
+
+    #Coco:hover {
+      opacity: 0.10;
+      cursor: pointer;
+      height: 50px;
+      transition: opacity 1.0s;
+      transition: height 1.0s;
+      /**/
+      transition: opacity 1.0s ease-in-out, height 1.0s ease-in-out;
+      /**/
+    }
+
+    .product-img {
+      height: 120px;
+      width: 120px;
+      margin-left: 40px;
+      max-width: 100%;
+    }
+
+    .Welcome-text-left {
+      color: rgb(80, 80, 80);
+      font-size: 40px;
+      display: inline;
+      float: left;
+    }
+
+    /*
+                .Announcement {
+                    background-color: wheat;
+                    margin-top: 100px;
+                    margin-bottom: 50px;
+                }
+                    */
+  </style>
+</head>
+
+<body>
+  <div id="webpage">
+    <div id="header">
+      <header class="header">
+        <!--<button onclick="cocoSound();">Test</button>-->
+        <a href="/index.html" style="margin-right: 5px !important;"><img id="Coco" src="/Coco.svg" onmouseover="const audio = new Audio(`/Coco.wav`); audio.play()"></a>
+
+        <div class="left-header">
+          <% if (false) { %>
+          <div></div>
+          <a class="content-only-a" href="/Games/">
+            <button class="special-button">Games</button>
+          </a>
+          <button class="special-button">Productivity</button>
+          <button class="special-button">Creation</button>
+          <button class="special-button">Develop</button>
+          <% } else { %>
+          <a class="content-only-a" href="/users/new/project/">
+            <button class="special-button">Create New</button>
+          </a>
+          <a class="content-only-a" href="/CocoBox/featured/">
+            <button class="special-button">Featured</button>
+          </a>
+          <a class="content-only-a" href="/Search/?type=project&date=now&tags=all">
+            <button class="special-button">Search</button>
+          </a>
+          <% } %>
+        </div>
+
+        <div id="user-controls" class="right-header">
+          <% if (user !=null && user !=="" ) { %>
+          <ul style="align-items: center; justify-content: center; color: goldenrod;">
+            Welcome back <a href="/users/<%= user.username %>">
+              <%= user.username %>
+            </a>!
+          </ul>
+          <ul style="align-items: center; justify-content: center; color: goldenrod; margin-left: 15px; margin-top: 10px; padding: 0px !important;">
+            <a href="/messages"><img height="20px" src="/Stickers/Mail.stikr" alt="View your messages"></a>
+            <span>Or</span>
+            <a href="JavaScript:navBoxOpen('messages')"><img height="25px" src="/Stickers/Write.stikr" alt="Write a message"></a>
+          </ul>
+          <a class="content-only-a" href="/manage">
+            <button class="special-button header-right">Manage account</button>
+          </a>
+
+          <% if (user.role==="Admin" ) { %>
+          <a class="content-only-a" href="/admin/">
+            <button class="special-button">Open Admin Panel</button>
+          </a>
+          <% } %>
+
+          <% } else { %>
+          <a class="content-only-a" href="/login/">
+            <button id="sign-in" class="special-button header-right">Sign In</button>
+          </a>
+          <a class="content-only-a" href="/register/">
+            <button class="special-button">Create Account</button>
+          </a>
+          <% } %>
+
+        </div>
+
+      </header>
+    </div>
+    <div id="Surprise" class="info-box new-years-banner hide" style="background-image: url('/Stickers/Fireworks.svg'); background-size: cover !important; background-position: -20px -300px; background-color: rgb(0, 0, 34); text-shadow: none; color: white;">
+      <h1>Happy New Year! <span class="year-output"></span></h1>
+      <h4>Celebrate the new year, <span class="year-output"></span>!</h4>
+      <ul>
+        <li><a href="/users/new/project/">Create a project for the new year!</a></li>
+        <li><a href="/search/?q=New%20Years%20Day!">Search for projects about the new year.</a></li>
+      </ul>
+    </div>
+    <div id="notify" class="hidden">
+      <div class="box-head">
+        <h1>Notifications</h1>
+      </div>
+      <div id="notification-box">
+        <div class="cool-box">
+          <button class="report" onclick="NotifyApi.readAll()">Read All</button> <button onclick="NotifyApi.close();">Close</button>
+        </div>
+        <div>
+          <h2>New Notification:</h2>
+          <div class="big-box">
+            <h3>New Message from @Coco</h3>
+            <p>Hello!</p>
+          </div>
+          <button class="special-button">Dismiss</button><button>Respond</button>
+        </div>
+        <hr>
+        <h4>Messages</h4>
+        <ul>
+          <li>
+            From <a>@Coco</a>:
+            <p>Hello, Welcome to the Coco website! I Li...</p>
+            <button class="special-button">Read</button>
+          </li>
+        </ul>
+        <hr>
+        <h4>Alerts:</h4>
+        <div>Nothing New...</div>
+        <hr>
+      </div>
+    </div>
+    <div id="welcome">
+
+      <div id="main-nav-box" class="navigation-box">
+      </div>
+
+      <div id="intro" class="info-box">
+        <img class="Coco-logo" src="/Stickers/CocoBox.svg">
+        <p class="Welcome-text">Welcome To CocoBox!</p>
+        <h2>Create, share and distribute your projects!</h2>
+        <h3>Upload Audio, a short video, a picture, or a sxml file.</h3>
+
+        <div class="box-head" style="margin: 12px !important; margin-bottom: 0px !important; margin-top: 0px !important; position: relative; z-index: 10;">
+          <p class="Welcome-text center">Projects!:</p>
+        </div>
+        <div class="big-box" style="border-top-left-radius: 0px; border-top-right-radius: 0px; margin-top: 0px !important;">
+          <div class="big-box">
+            <p class="Welcome-text center">Projects from <a href="/users/Coco/">@Coco</a>:</p>
+            <div id="Coco-projects" style="border: 2px solid black; display: grid; grid-template-columns: 370px 370px 370px; row-gap: 10px; column-gap: 10px; padding: 10px; background-color: white; max-height: 300px !important; overflow: scroll;">
+            </div>
+          </div>
+
+          <ul class="big-box">
+            <p class="Welcome-text center">Community Projects:</p>
+            <li>
+              <div class="box-head">
+                <h1>New Projects:</h1>
+              </div>
+              <div class="new-projects-row" style="margin: 2px; border: 2px solid black; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr !important; row-gap: 10px; column-gap: 10px; padding: 10px; background-color: white; margin-top: 0px; overflow-x: scroll; max-height: 300px;"></div>
+            </li>
+            <hr>
+            <li>
+              <div class="box-head">
+                <h1>Popular Projects:</h1>
+              </div>
+              <div class="popular-projects-row" style="margin: 2px; border: 2px solid black; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr !important; row-gap: 10px; column-gap: 10px; padding: 10px; background-color: white; margin-top: 0px; overflow-x: scroll; max-height: 300px;"></div>
+            </li>
+            <hr>
+            <li>
+              <div class="box-head">
+                <h1>Featured Projects:</h1>
+              </div>
+              <div class="featured-projects-row" style="margin: 2px; border: 2px solid black; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr !important; row-gap: 10px; column-gap: 10px; padding: 10px; background-color: white; margin-top: 0px; overflow-x: scroll; max-height: 300px;"></div>
+            </li>
+          </ul>
+          <ul class="big-box">
+            <p class="Welcome-text center">My Projects</p>
+            <li>
+              <div class="box-head">
+                <h1>All</h1>
+              </div>
+              <div class="my-projects-row" style="margin: 2px; border: 2px solid black; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr !important; row-gap: 10px; column-gap: 10px; padding: 10px; background-color: white; margin-top: 0px; overflow-x: scroll; max-height: 300px;"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <footer class="box-product">
+        <div id="footer-content">
+          <p>CocoInk.ink © 2025 Coco Ink Software. All rights reserved.</p>
+        </div>
+        <h4>
+          Want to know more about me? <a href="/faq">FactsAndQuestions</a>.
+          You can also see my <a href="/family">family</a>.
+        </h4>
+      </footer>
+
+    </div>
+
+    <div id="error-container" class="error-container-hide">
+      Some Scripts Have Probably Crashed
+      <div id="e" class="error big-box"></div>
+    </div>
+    <!---->
+    <script src="/Ambler.mp3Sound.js"></script>
+    <script src="/JS/global.js"></script>
+    <script>
+      console.log(`At: ${window.location.pathname}`);
+      if (window.location.pathname.includes('index.html')) window.location.href = window.location.pathname.replace('index.html', '');
+    </script>
+    <!--<script src="/Scripts/spawnNewstuff.js" type="module"></script>-->
+    <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+    <!--<script type="module" src="/Scripts/bodyScripts.js"></script>-->
+    <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <script>
+      async function getUserProjects(isOnHomePage = false) {
+        const isCoco = (isOnHomePage) ? "Coco-projects" : "user-projects";
+        const res = await fetch("/api/list/projects/Coco/");
+        if (res.status === 200) {
+          const projects = await res.json();
+          if (!projects) return;
+          console.log(projects);
+          const projectList = document.getElementById(isCoco);
+          projectList.innerHTML = "";
+          projects.sort((a, b) =>
+            b.id - a.id
+          );
+          projects.forEach(project => {
+            projectList.innerHTML += `
+              <a style="display: contents; word-break: break-all;" href="/projects/${project.id}/">
+                <div style="border: 2px solid black;">
+                  <div style="border-bottom: 2px solid black; height: 250px; padding-bottom: 0px;">
+                    <img src="/api/projects/${project.id}/thumbnail/" alt="Project Image" width="100%" height="100%">
+                  </div>
+                  <div style="display: flex;">
+                    <div style="padding: 5px; flex: 2; padding-bottom: 12px;">
+                      <a style="text-decoration: none;" href="/projects/${project.id}/"><h4 style="margin: 0px; margin-bottom: 5px;">${project.name}</h4></a>
+                      <span style="padding: 10px; border-radius: 3px; background-color: gray; position: relative;" height="50px">
+                        <a href="/search/?type=project&project_type=${project.type}">
+                          <img class="sticker" src="/Project Types/${project.type}.png"> ${project.type}
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            `;
+          });
+          projectList.innerHTML = new Amp().Stickerify(new Amp().linkify(projectList.innerHTML));
+        }
+      }
+
+      getUserProjects(true);
+      clearError();
+
+      async function loadRow(url, containerSelector) {
+        const res = await fetch(url);
+        const projects = await res.json();
+        console.log(projects);
+
+        const container = document.querySelector(containerSelector);
+        container.innerHTML = "";
+
+        projects.forEach(project => {
+          container.innerHTML += `
+              <a style="display: contents; word-break: break-all;" href="/projects/${project.id}/">
+                <div style="border: 2px solid black;">
+                  <div style="border-bottom: 2px solid black; height: 250px; padding-bottom: 0px;">
+                    <img src="/api/projects/${project.id}/thumbnail/" alt="Project Image" width="100%" height="100%">
+                  </div>
+                  <div style="display: flex;">
+                    <div style="padding: 5px; flex: 2; padding-bottom: 12px;">
+                      <a style="text-decoration: none;" href="/projects/${project.id}/"><h4 style="margin: 0px; margin-bottom: 5px;">${new Amp().Stickerify(project.name)}</h4></a>
+                      <span style="padding: 10px; border-radius: 3px; background-color: gray; position: relative;" height="50px">
+                        <a href="/search/?type=project&project_type=${project.type}">
+                          <img class="sticker" src="/Project Types/${project.type}.png"> ${project.type}
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            `;
+        });
+      }
+
+      loadRow("/api/projects/new", ".new-projects-row");
+      loadRow("/api/projects/popular", ".popular-projects-row");
+      loadRow("/api/projects/featured", ".featured-projects-row");
+      <% if (user) { %>
+      loadRow("/api/list/projects/<%= user.username %>/", ".my-projects-row");
+      <% } %>
+    </script>
+    <% if (user && (user.username && ((user.username != null) && (user.username)))) { %>
+    <script>
+      loadMessages();
+    </script>
+    <% } %>
+    <script src="/JS/@.js"></script>
+</body>
+
+</html>

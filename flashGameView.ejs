@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <title><%= game.name %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <style type="text/css" media="screen">
+    html,
+    body {
+      height: 100%;
+      background-color: #7a7a7a;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #flashContent {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="flashContent">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="100%" height="100%" id="FlashApp" align="middle">
+      <param name="movie" value="<%= game.src %>" />
+      <param name="quality" value="high" />
+      <param name="bgcolor" value="#00ccff" />
+      <param name="play" value="true" />
+      <param name="loop" value="true" />
+      <param name="wmode" value="gpu" />
+      <param name="scale" value="showall" />
+      <param name="menu" value="true" />
+      <param name="devicefont" value="false" />
+      <param name="salign" value="" />
+      <param name="allowScriptAccess" value="sameDomain" />
+      <!--[if !IE]>-->
+      <object type="application/x-shockwave-flash" data="<%= game.src %>" width="100%" height="100%">
+        <param name="movie" value="<%= game.src %>" />
+        <param name="quality" value="high" />
+        <param name="bgcolor" value="#00ccff" />
+        <param name="play" value="true" />
+        <param name="loop" value="true" />
+        <param name="wmode" value="gpu" />
+        <param name="scale" value="showall" />
+        <param name="menu" value="true" />
+        <param name="devicefont" value="false" />
+        <param name="salign" value="" />
+        <param name="allowScriptAccess" value="sameDomain" />
+        <!--<![endif]-->
+        <h2>Failed to display Flash content!</h2>
+        <h3>
+          Your browser may be too old to run the flash emulator, Try the real Flash player (but it Flash is now: Discontinued, Outdated, Dangerous, Needs older version.)
+          we recommend the emulator.
+        </h3>
+        <a href="http://www.adobe.com/go/getflash">
+          <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+        </a>
+        <!--[if !IE]>-->
+      </object>
+      <!--<![endif]-->
+    </object>
+  </div>
+
+  <script>
+    (function() {
+      const cdn = document.createElement('script');
+      cdn.src = "https://unpkg.com/@ruffle-rs/ruffle";
+
+      cdn.onload = () => console.log("Ruffle loaded from CDN");
+      cdn.onerror = () => {
+        console.warn("CDN failed, loading local Ruffle");
+        const local = document.createElement('script');
+        local.src = "/static/ruffle/ruffle.js";
+        document.head.appendChild(local);
+      };
+
+      document.head.appendChild(cdn);
+    })();
+  </script>
+
+</body>
+
+</html>

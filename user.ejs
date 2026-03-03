@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Coco user <%= username %>
+  </title>
+  <link rel="icon" type="image/x-icon" href="/Coco Icon/Old Coco Icon.ico">
+  <link href="/CSS/homepage.css" rel="stylesheet">
+  <link href="/CSS/header.css" rel="stylesheet">
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <link href="/CSS/general.css" rel="stylesheet">
+  <link href="/CSS/general.css" rel="stylesheet">
+  <link href="/CSS/header.css" rel="stylesheet">
+  <link href="/CSS/teapot.css" rel="stylesheet">
+  <link href="/CSS/download.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: grey;
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("/Images/Background.png");
+    }
+
+    #webpage {
+      position: absolute;
+      margin-top: 50px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      row-gap: 12px;
+      column-gap: 12px;
+      margin-top: 30px;
+      margin-left: 12px;
+      margin-right: 12px;
+      bottom: 0;
+    }
+
+    /*#header {}*/
+
+    .header {
+      display: flex;
+      flex: 1;
+      height: 44px;
+      position: fixed;
+      z-index: 100;
+      margin-bottom: 50px;
+      background-color: lightgrey;
+      top: 0;
+      right: 0;
+      left: 0;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+      padding-top: 12px;
+      padding-left: 12px;
+      padding-bottom: 12px;
+      padding-right: 12px;
+    }
+
+
+    .box-product {
+      background-color: rgb(247, 243, 243);
+      white-space: nowrap;
+      /* grid-template-columns: 100px 1fr; */
+      /* width: 300px;
+                    height: 300px; */
+      padding: 30px 3px 30px 40px;
+      /* display: grid; */
+      height: 100%;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+    }
+
+    #Coco {
+      z-index: 101;
+      height: 38px;
+      padding-bottom: -20px;
+      padding-right: -100px;
+      opacity: 1;
+      transition: opacity 1.0s;
+      transition: height 1.0s;
+    }
+
+
+    #Coco:hover {
+      opacity: 0.10;
+      cursor: pointer;
+      height: 50px;
+      transition: opacity 1.0s;
+      transition: height 1.0s;
+    }
+
+    .product-img {
+      height: 120px;
+      width: 120px;
+      margin-left: 40px;
+      max-width: 100%;
+    }
+
+    .Announcement {
+      background-color: wheat;
+      margin-top: 100px;
+      margin-bottom: 50px;
+    }
+
+    #user-box {
+      display: block;
+      max-height: 1vh !important;
+    }
+
+    #user-info {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      column-gap: 15px;
+      overflow-y: scroll !important;
+    }
+
+    .user-box {
+      display: block;
+      background: white;
+      padding: 5px;
+      border-radius: 5px;
+      border: 2px solid rgb(211, 211, 211);
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
+
+    .user-box-head {
+      border-radius: 7px;
+      border: 2px solid rgb(230, 230, 230);
+      background-color: rgb(199, 199, 199);
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      padding: 2px 10px;
+    }
+
+    .user-box-head h3 {
+      color: rgb(128, 128, 128);
+    }
+
+    #left-box {
+      --pericles-word-background: rgba(9, 46, 140, 0.92);
+      --pericles-section-background: rgba(255, 254, 219, 1.54);
+      text-shadow: 0 1px #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: white;
+      margin: 12px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0px !important;
+      height: 100vh;
+      margin: -3px;
+      width: 240px;
+      transition: width 200ms;
+    }
+
+    #left-box.edit {
+      width: 328px;
+    }
+  </style>
+</head>
+
+<body style="background-image: url(/Images/Background.png);">
+
+  <div id="webpage">
+    <div id="header">
+      <header class="header">
+        <!--<button onclick="cocoSound();">Test</button>-->
+        <a href="/index.html" style="margin-right: 5px !important;"><img id="Coco" src="/Coco.svg" onmouseover="const audio = new Audio(`/Coco.wav`); audio.play()"></a>
+
+        <div class="left-header">
+          <% if (false) { %>
+          <div></div>
+          <a class="content-only-a" href="/Games/">
+            <button class="special-button">Games</button>
+          </a>
+          <button class="special-button">Productivity</button>
+          <button class="special-button">Creation</button>
+          <button class="special-button">Develop</button>
+          <% } else { %>
+          <a class="content-only-a" href="/about">
+            <button class="special-button">About</button>
+          </a>
+          <a class="content-only-a" href="/Downloads/">
+            <button class="special-button">Downloads</button>
+          </a>
+          <% } %>
+        </div>
+
+        <div id="user-controls" class="right-header">
+          <% if (user !=null && user !=="" ) { %>
+          <ul style="align-items: center; justify-content: center; color: goldenrod;">
+            Welcome back <a href="/users/<%= user.username %>">
+              <%= user.username %>
+            </a>!
+          </ul>
+          <a class="content-only-a" href="/manage">
+            <button class="special-button header-right">Manage account</button>
+          </a>
+
+          <% if (user.role==="Admin" ) { %>
+          <a class="content-only-a" href="/admin/">
+            <button class="special-button">Open Admin Panel</button>
+          </a>
+          <% } %>
+
+          <% } else { %>
+          <a class="content-only-a" href="/login/">
+            <button id="sign-in" class="special-button header-right">Sign In</button>
+          </a>
+          <a class="content-only-a" href="/register/">
+            <button class="special-button">Create Account</button>
+          </a>
+          <% } %>
+
+        </div>
+
+      </header>
+    </div>
+
+    <div id="container">
+      <div id="user-box">
+        <div class="user-box-head">
+          <h3>
+            <span><%= username %>'s profile</span>
+            <span style="float: right;">
+
+              <% if (user) { %>
+              <% const isUserFollowing = user.following.some(f => f.username === username) %>
+              <% if (isUserFollowing) { %>
+              <a href="/api/unfollow/<%= username %>/"><button class="special-button">Unfollow</button></a>
+              <% } else { %>
+              <a href="/api/follow/<%= username %>/"><button class="special-button">Follow</button></a>
+              <% } %>
+
+              <% if ((user) && username != user.username) { %><button class="special-button" onclick="navBoxOpen('messages', 'to=<%= username %>')">Send Message</button><% } %>
+              <% } %>
+            </span>
+          </h3>
+        </div>
+        <div class="user-box" id="user-info">
+          <div>
+            <div id="left-box" class="box-push-into-left" style="padding: 10px !important;">
+              <h4>Some stuff to know about <br><a href="/users/<%= username %>/"><%= username %></a>!: </h4>
+              <% if (isEditable) { %>
+              <button class="special-button" onclick="document.getElementById('left-box').classList.toggle('edit'); setTimeout(function() {document.getElementById('edit-img-box').classList.toggle('edit'); document.getElementById('edit-des-box').classList.toggle('edit'); document.getElementById('user-description').classList.toggle('edit');}, 200)">Edit</button><br>
+              <style>
+                #edit-img-box {
+                  display: none !important;
+                }
+
+                #edit-img-box.edit {
+                  display: block !important;
+                  border: 2px black solid !important;
+                  width: 300px !important;
+                  height: 300px !important;
+                }
+
+                #edit-des-box {
+                  display: none !important;
+                }
+
+                #user-description {
+                  display: block !important;
+                }
+
+                #edit-des-box.edit {
+                  display: block !important;
+                }
+
+                #user-description.edit {
+                  display: none !important;
+                }
+              </style>
+
+              </style>
+              <div id="edit-img-box" style="max-width: 300px !important; max-height: 300px !important; overflow-y: scroll !important; overflow-x: scroll !important;">
+                <h1>Upload an Image</h1>
+                <form id="imageForm">
+                  <input type="file" id="imageInput" accept="image/*" />
+                  <div id="previewContainer">
+                    <img id="imagePreview" src="" alt="Image Preview" style="max-width: 300px; display: none;" />
+                  </div>
+                  <button class="special-button" type="submit">Upload</button>
+                </form>
+
+                <script>
+                  const username = "<%= user.username %>";
+                  document.addEventListener("DOMContentLoaded", () => {
+                    const imageInput = document.getElementById("imageInput");
+                    const imagePreview = document.getElementById("imagePreview");
+                    const imageForm = document.getElementById("imageForm");
+
+                    // Preview the image
+                    imageInput.addEventListener("change", (event) => {
+                      const file = event.target.files[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                          imagePreview.src = e.target.result;
+                          imagePreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    });
+
+                    // Handle form submission
+                    imageForm.addEventListener("submit", async (event) => {
+                      event.preventDefault();
+
+                      const file = imageInput.files[0];
+                      if (!file) {
+                        alert("Please select an image to upload.");
+                        return;
+                      }
+
+                      const formData = new FormData();
+                      formData.append("pfp", file);
+
+                      try {
+                        const response = await fetch(`/users/${username}/changePfp/`, {
+                          method: "POST",
+                          body: formData,
+                        });
+
+                        if (response.ok) {
+                          alert("Image uploaded successfully!");
+                          window.location.href = window.location.href;
+                        } else {
+                          alert("Failed to upload image.");
+                        }
+                      } catch (error) {
+                        console.error("Error uploading image:", error);
+                        alert("An error occurred while uploading the image.");
+                      }
+                    });
+                  });
+                </script>
+              </div>
+              <% } %>
+              <img src="/users/<%= username %>/pfp" style="border: black 2px solid;" width="100px" height="100px">
+              <div style="padding: 3px; margin: 9px;">
+                <span>Joined: <%= user2.created_at %></span>
+                <% if (isEditable) { %>
+                <h4>My description: </h4>
+                <% } %>
+                <p id="user-description"><%= user2.description %></p>
+                <% if (isEditable) { %>
+                <div id="edit-des-box">
+                  <textarea inputmode="url" id="description" wrap="off" style="white-space: pre; overflow-x: auto; min-width: 279px !important; min-height: 233px !important; max-width: 382px !important;"><%= user2.description %></textarea>
+                  <h3>CocoScript:</h3>
+                  <p>Use CocoScript to style your pages and add interactivity.</p>
+                  <textarea id="Coco-Script-area" wrap="off" style="white-space: pre; overflow-x: auto; min-width: 279px !important; min-height: 233px !important; max-width: 382px !important;"><% if (user2.script) { %><%- user2.script %> <% } %></textarea>
+                  <br>
+                  <button onclick="RunCocoScript()">Test Script</button>
+                  <h4>CocoScript Output:</h4>
+                  <ul id="CocoScript's-special-output"></ul>
+                  <button onclick="window.document.getElementById('CocoScript\'s-special-output').innerHTML = '';">Clear Output</button>
+                  <button class="special-button" onclick="updateProfile();">Update</button>
+                </div>
+                <% } else { %>
+                <textarea id="Coco-Script-area" style="display: none;"><% if (user2.script) { %><%- user2.script %> <% } %></textarea>
+                <% } %>
+              </div>
+
+            </div>
+          </div>
+          <div style="  display: flex; 
+  flex-direction: column !important;
+  height: 100%; word-break: break-all; max-width: 1000px !important;
+  max-height: 100vh !important;
+  padding-bottom: -200px;
+  overflow-y: scroll;">
+            <div style="display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 29px;
+  /* Critical: allow inner flex items to shrink so scrolling works */
+  min-height: 0;
+  /* Stretch between header and footer */
+  flex: 1;
+  flex-direction: column-reverse !important;
+  min-height: 900px;
+  ">
+              <div id="following" style="border: black 2px solid !important;   /* Stretch in the remaining horizontal space */
+  flex: 1;
+  /* Critical: enable vertical scrolling inside */
+  overflow: auto;
+  /* Critical: allow the scrolling area to shrink within the flex container */
+  min-height: 0;
+  /* Optional styling */
+  background: white;
+  border: 1px solid #ddd;
+  min-height: 300px;
+  padding: 1rem;">
+                <h3>Following (<%= following.length %>)</h3>
+                <ul>
+                  <% let followingList = [];
+                try { followingList = following } catch(e) {} %>
+                  <% followingList.forEach(function(user1) { %>
+                  <li style="border: 2px solid black; height: 120px; display: flex; align-items: center; padding: 5px; margin-bottom: 10px;">
+                    <img style="border: 2px solid black; margin-right: 15px;" width="100" height="100" src="/users/<%= user1.username %>/pfp">
+                    <h3><a href="/users/<%= user1.username %>/"><%= user1.username %></a>
+                      <% if (user) { %>
+                      <span>
+                        <% if (!user.following.some(f => f.username === user1.username)) { %> <button class="special-button follow_unfollow" data-username="<%= user1.username %>" onclick="followUser('<%= user1.username %>');">Follow User</button>
+                        <% } else { %><button class="special-button follow_unfollow" data-username="<%= user1.username %>" onclick="unfollowUser('<%= user1.username %>');">Unfollow User</button><% } %>
+                        <% } %>
+                      </span>
+                    </h3>
+                  </li>
+                  <% }); %>
+                </ul>
+              </div>
+              <div id="followers" style="border: black 2px solid !important;   /* Stretch in the remaining horizontal space */
+  flex: 1;
+  /* Critical: enable vertical scrolling inside */
+  overflow: auto;
+  /* Critical: allow the scrolling area to shrink within the flex container */
+  min-height: 0;
+  /* Optional styling */
+  background: white;
+  border: 1px solid #ddd;
+  min-height: 300px;
+  padding: 1rem;">
+                <h3>Followers (<%= followers.length %>)</h3>
+                <ul>
+                  <% let followerList = [];
+                try { followerList = followers } catch(e) {} %>
+                  <% followerList.forEach(function(user1) { %>
+                  <li style="border: 2px solid black; height: 120px; display: flex; align-items: center; padding: 5px; margin-bottom: 10px;">
+                    <img style="border: 2px solid black; margin-right: 15px;" width="100" height="100" src="/users/<%= user1.username %>/pfp">
+                    <h3><a href="/users/<%= user1.username %>/"><%= user1.username %></a>
+                      <% if (user) { %>
+                      <span>
+                        <% if (!user.following.some(f => f.username === user1.username)) { %> <button class="special-button follow_unfollow" data-username="<%= user1.username %>" onclick="followUser('<%= user1.username %>');">Follow User</button>
+                        <% } else { %><button class="special-button follow_unfollow" data-username="<%= user1.username %>" onclick="unfollowUser('<%= user1.username %>');">Unfollow User</button><% } %>
+                        <% } %>
+                      </span>
+                    </h3>
+                  </li>
+                  <% }); %>
+                </ul>
+              </div>
+            </div>
+            <div id="projects" style="display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  /* Critical: allow inner flex items to shrink so scrolling works */
+  min-height: 0;
+  /* Stretch between header and footer */
+  min-height: 300px;
+  flex: 1;">
+              <div style="border: black 2px solid !important;   /* Stretch in the remaining horizontal space */
+  flex: 2;
+  /* Critical: enable vertical scrolling inside */
+  overflow: auto;
+  /* Critical: allow the scrolling area to shrink within the flex container */
+  min-height: 0;
+  /* Optional styling */
+  background: white;
+  border: 1px solid #ddd;
+  min-height: 300px;
+  padding: 1rem;">
+                <h3>Projects</h3>
+                <ul id="user-projects" style="border: 2px solid black; display: grid; grid-template-columns: 1fr 1fr; row-gap: 10px; column-gap: 10px; padding: 10px; background-color: white;">
+                  No projects to display!
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div id="liked-projects" style="display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  /* Critical: allow inner flex items to shrink so scrolling works */
+  min-height: 0;
+  min-height: 300px;
+  /* Stretch between header and footer */
+  flex: 1;">
+                <div style="border: black 2px solid !important;   /* Stretch in the remaining horizontal space */
+  flex: 2;
+  /* Critical: enable vertical scrolling inside */
+  overflow: auto;
+  /* Critical: allow the scrolling area to shrink within the flex container */
+  min-height: 0;
+  min-height: 300px;
+  /* Optional styling */
+  background: white;
+  border: 1px solid #ddd;
+  padding: 1rem;">
+                  <h3>Liked Projects</h3>
+                  <ul id="liked-projects" style="border: 2px solid black; display: grid; grid-template-columns: 1fr 1fr; row-gap: 10px; column-gap: 10px; padding: 10px; background-color: white;">
+                    No projects to display!
+                  </ul>
+                </div>
+              </div>
+              <div id="favorite-projects" style="display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  /* Critical: allow inner flex items to shrink so scrolling works */
+  min-height: 0;
+  /* Stretch between header and footer */
+  flex: 1;">
+                <div style="border: black 2px solid !important;   /* Stretch in the remaining horizontal space */
+  flex: 2;
+  /* Critical: enable vertical scrolling inside */
+  overflow: auto;
+  /* Critical: allow the scrolling area to shrink within the flex container */
+  min-height: 0;
+  /* Optional styling */
+  background: white;
+  border: 1px solid #ddd;
+  padding: 1rem;">
+                  <h3>Favorite Projects</h3>
+                  <ul id="favorited-projects" style="border: 2px solid black; display: grid; grid-template-columns: 1fr 1fr; row-gap: 10px; column-gap: 10px; padding: 10px; background-color: white;">
+                    No projects to display!
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div id="main-nav-box" class="navigation-box">
+            </div>
+            <div id="error-container" class="error-container-hide">
+              <!--Some Scripts Have Probably Crashed-->
+              <div id="e" class="error big-box"></div>
+            </div>
+          </div>
+        </div>
+        <% if (user) { %>
+        <script>
+          localStorage.setItem("poopUsername", "<%= user.username %>");
+        </script>
+        <% } %>
+        <script src="/CocoScript.js"></script>
+        <script>
+          function RunCocoScript() {
+            CocoScript.run(document.getElementById("Coco-Script-area").value);
+          }
+        </script>
+        <% if (user) { %>
+        <script>
+          CocoScript.run(`!username = "<%= user.username %>";`)
+        </script>
+        <% } %>
+        <% if (user2.script && ((user) && user.CocoScriptEnabled === 'true')) { %><script>
+          setTimeout(function(event) {
+            RunCocoScript();
+          }, 2000);
+        </script><% } %>
+        <script src="/Scripts/user.js"></script>
+        <script src="/Ambler.mp3Sound.js"></script>
+        <script src="/JS/global.js"></script>
+        <!-- Initialize @.js -->
+        <script src="/JS/@.js"></script>
+        <script>
+          setTimeout(function() {
+            window.document.getElementById("user-description").innerHTML = new Amp().linkify(window.document.getElementById("user-description").innerHTML);
+            window.document.getElementById("user-description").innerHTML = new Amp().Stickerify(window.document.getElementById("user-description").innerHTML);
+          });
+
+          async function getUserProjects(isOnHomePage = false) {
+            const isCoco = (isOnHomePage) ? "Coco-projects" : "user-projects";
+            const res = await fetch("/api/list/projects/<%= username %>/");
+            if (res.status === 200) {
+              /*@param {}*/
+              const projects = await res.json() || [];
+              if (!projects || projects.length < 1) return;
+              const projectList = document.getElementById(isCoco);
+              projectList.innerHTML = "";
+              projects.forEach(project => {
+                projectList.innerHTML += `
+                <a style="display: contents; word-break: break-all;" href="/projects/${project.id}/">
+                  <div style="border: 2px solid black;">
+                    <div style="border-bottom: 2px solid black; height: 200px;">
+                      <img src="/api/projects/${project.id}/thumbnail/" alt="Project Image" width="100%" height="100%">
+                    </div>
+                    <div style="display: flex;">
+                      <div style="padding: 5px; flex: 2;">
+                        <h4 style="margin: 0px; margin-bottom: 5px;">${project.name}</h4>
+                        by <a href="/users/${project.owner.username}/">${project.owner.username}</a>
+                      </div>
+                      <div>
+                        <a href="/users/${project.owner.username}/">
+                          <img src="/users/${project.owner.username}/pfp/" alt="User ${project.owner.username}'s Profile Picture" width="50px" height="50px" style="border: 2px black solid !important;border-radius: 50%; margin: 7px;">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              `;
+              });
+              projectList.innerHTML = new Amp().Stickerify(projectList.innerHTML);
+            }
+          }
+
+          getUserProjects();
+        </script>
+</body>
+
+</html>

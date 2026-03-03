@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>No Project!</title>
+  <link rel="icon" type="image/x-icon" href="/Coco Icon/Old Coco Icon.ico">
+  <link href="/CSS/homepage.css" rel="stylesheet">
+  <link href="/CSS/header.css" rel="stylesheet">
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <!--<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>-->
+  <link href="/CSS/general.css" rel="stylesheet">
+  <link href="/CSS/general.css" rel="stylesheet">
+  <link href="/CSS/header.css" rel="stylesheet">
+  <link href="/CSS/teapot.css" rel="stylesheet">
+  <link href="/CSS/download.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: grey;
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("/Images/Background Dark.png") !important;
+    }
+
+    #webpage {
+      position: absolute;
+      margin-top: 50px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      row-gap: 12px;
+      column-gap: 12px;
+      margin-top: 30px;
+      margin-left: 12px;
+      margin-right: 12px;
+      bottom: 0;
+    }
+
+    /*#header {}*/
+
+    .header {
+      display: flex;
+      flex: 1;
+      height: 44px;
+      position: fixed;
+      z-index: 100;
+      margin-bottom: 50px;
+      background-color: lightgrey;
+      top: 0;
+      right: 0;
+      left: 0;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+      padding-top: 12px;
+      padding-left: 12px;
+      padding-bottom: 12px;
+      padding-right: 12px;
+    }
+
+
+    .box-product {
+      background-color: rgb(247, 243, 243);
+      white-space: nowrap;
+      /* grid-template-columns: 100px 1fr; */
+      /* width: 300px;
+                    height: 300px; */
+      padding: 30px 3px 30px 40px;
+      /* display: grid; */
+      height: 100%;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+    }
+
+    #Coco {
+      z-index: 101;
+      height: 38px;
+      padding-bottom: -20px;
+      padding-right: -100px;
+      opacity: 1;
+      transition: opacity 1.0s;
+      transition: height 1.0s;
+    }
+
+
+    #Coco:hover {
+      opacity: 0.10;
+      cursor: pointer;
+      height: 50px;
+      transition: opacity 1.0s;
+      transition: height 1.0s;
+    }
+
+    .product-img {
+      height: 120px;
+      width: 120px;
+      margin-left: 40px;
+      max-width: 100%;
+    }
+
+    .Announcement {
+      background-color: wheat;
+      margin-top: 100px;
+      margin-bottom: 50px;
+    }
+
+    #project {
+      display: block;
+      background: rgb(175, 175, 175);
+      background: black;
+      padding: 5px;
+      border-radius: 5px;
+      border: 2px solid rgb(211, 211, 211);
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: block;
+      position: fixed;
+      z-index: 100;
+      align-items: center;
+      align-content: center;
+      justify-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    #click-to-play {
+      background-color: black !important;
+    }
+  </style>
+</head>
+
+<body style="background-image: url(/Images/Background.png);">
+
+  <div>
+    <div id="project">
+      <div>
+        <a href="/index.html" target="_blank" style="margin-right: 5px !important;"><img id="Coco" src="/Coco.svg" onmouseover="const audio = new Audio(`/Coco.wav`); audio.play()"></a>
+        <a id="project-link" target="_blank">View Project on Coco!</a>
+        <div style="display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  /* Critical: allow inner flex items to shrink so scrolling works */
+  min-height: 0;
+  /* Stretch between header and footer */
+  flex: 1;
+  flex-direction: row !important;
+  ">
+          <div id="project-container" style="border: rgb(255, 255, 255) 2px solid !important;   /* Stretch in the remaining horizontal space */
+  width: 765px;
+  height: 350px;
+  justify-content: center; /* Centers horizontally */
+align-items: center; /* Centers vertically */
+display: flex;
+  ">
+            <h1>Loading Project...</h1>
+          </div>
+        </div>
+      </div>
+      <% if (user) { %>
+      <script>
+        const username = "<%= user.username %>";
+      </script>
+      <% } else { %>
+      <script>
+        const username = "";
+      </script>
+      <% } %>
+      <% if (user) { %>
+      <script>
+        localStorage.setItem("poopUsername", "<%= user.username %>");
+      </script>
+      <% } %>
+      <script src="/Ambler.mp3Sound.js"></script>
+      <script src="/JS/CocoScript Engine/CocoScript.js"></script>
+      <script src="/JS/@.js"></script>
+      <script src="https://vjs.zencdn.net/8.23.4/video.min.js"></script>
+      <script src="/JS/project.js"></script>
+      <script>
+        document.getElementById("project-link").setAttribute("href", `/projects/${getProjectId()}/`);
+        document.removeEventListener("click", startMusic);
+      </script>
+</body>
+
+</html>

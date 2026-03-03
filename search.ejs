@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="/Coco Icon/Old Coco Icon.ico">
+  <link href="/CSS/homepage.css" rel="stylesheet">
+  <link href="/CSS/header.css" rel="stylesheet">
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <link href="/CSS/general.css" rel="stylesheet">
+  <link rel="stylesheet" href="/CSS/search.css">
+  <style>
+    body {
+      background-color: grey;
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("/Images/Background.png");
+      margin: 0px;
+      padding: 0px;
+      /*height: 3000px;*/
+      width: 100%;
+      /*max-width: 1200px;*/
+    }
+
+    #webpage {
+      position: absolute;
+      margin-top: 50px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-left: 12px;
+      margin-right: 12px;
+      bottom: 0;
+    }
+
+    /*#header {}*/
+
+    .header {
+      display: flex;
+      flex: 1;
+      height: 44px;
+      position: fixed;
+      z-index: 100;
+      margin-bottom: 50px;
+      background-color: lightgrey;
+      top: 0;
+      right: 0;
+      left: 0;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+      padding-top: 12px;
+      padding-left: 12px;
+      padding-bottom: 12px;
+      padding-right: 12px;
+      /* From https://css.glass */
+      background: rgba(211, 211, 211, 0.75);
+      /*border-radius: 16px;*/
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5.2px);
+      -webkit-backdrop-filter: blur(5.2px);
+      border: 1px solid rgba(211, 211, 211, 0.548);
+      border-bottom: 2px solid rgba(211, 211, 211, 0.548);
+    }
+
+
+    /*.box-product {
+            background-color: rgb(247, 243, 243);
+            /* grid-template-columns: 100px 1fr; */
+    /* width: 300px;
+                height: 300px; *
+            /*padding: 30px 3px 30px 40px;*
+            /* display: grid; *
+
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+            width: 300px;
+            height: 300px;
+
+            overflow-y: scroll;
+            overflow-x: scroll;
+        }*/
+
+    .box-product {
+      background-color: wheat;
+      /*margin-bottom: 50px;*/
+      border-radius: 30px;
+      padding: 12px;
+      margin: 12px;
+      margin-top: 100px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+    }
+
+    #Coco {
+      z-index: 101;
+      height: 38px;
+      padding-bottom: -20px;
+      padding-right: -100px;
+      opacity: 1;
+      transition: height 1.0s;
+      transition: opacity 1.0s;
+      /**/
+      transition: opacity 1.0s ease-in-out, height 1.0s ease-in-out;
+      /**/
+    }
+
+
+    #Coco:hover {
+      opacity: 0.10;
+      cursor: pointer;
+      height: 50px;
+      transition: opacity 1.0s;
+      transition: height 1.0s;
+      /**/
+      transition: opacity 1.0s ease-in-out, height 1.0s ease-in-out;
+      /**/
+    }
+
+    .product-img {
+      height: 120px;
+      width: 120px;
+      margin-left: 40px;
+      max-width: 100%;
+    }
+
+    .Welcome-text-left {
+      color: rgb(80, 80, 80);
+      font-size: 40px;
+      display: inline;
+      float: left;
+    }
+
+    /*
+                .Announcement {
+                    background-color: wheat;
+                    margin-top: 100px;
+                    margin-bottom: 50px;
+                }
+                    */
+  </style>
+</head>
+
+<body>
+  <div id="webpage">
+    <div id="header">
+      <header class="header">
+        <!--<button onclick="cocoSound();">Test</button>-->
+        <a href="/index.html" style="margin-right: 5px !important;"><img id="Coco" src="/Coco.svg" onmouseover="const audio = new Audio(`/Coco.wav`); audio.play()"></a>
+
+        <div class="left-header">
+          <% if (false) { %>
+          <div></div>
+          <a class="content-only-a" href="/Games/">
+            <button class="special-button">Games</button>
+          </a>
+          <button class="special-button">Productivity</button>
+          <button class="special-button">Creation</button>
+          <button class="special-button">Develop</button>
+          <% } else { %>
+          <a class="content-only-a" href="/about">
+            <button class="special-button">About</button>
+          </a>
+          <a class="content-only-a" href="/Downloads/">
+            <button class="special-button">Downloads</button>
+          </a>
+          <a class="content-only-a" href="/Search/?type=all&date=now&tags=all">
+            <button class="special-button">Search</button>
+          </a>
+          <% } %>
+        </div>
+
+        <div id="user-controls" class="right-header">
+          <% if (user !=null && user !=="" ) { %>
+          <ul style="align-items: center; justify-content: center; color: goldenrod;">
+            Welcome back <a href="/users/<%= user.username %>">
+              <%= user.username %>
+            </a>!
+          </ul>
+          <ul style="align-items: center; justify-content: center; color: goldenrod; margin-left: 15px; margin-top: 10px; padding: 0px !important;">
+            <a href="/messages"><img height="20px" src="/Stickers/Mail.stikr" alt="View your messages"></a>
+            <span>Or</span>
+            <a href="JavaScript:navBoxOpen('messages')"><img height="25px" src="/Stickers/Write.stikr" alt="Write a message"></a>
+          </ul>
+          <a class="content-only-a" href="/manage">
+            <button class="special-button header-right">Manage account</button>
+          </a>
+
+          <% if (user.role==="Admin" ) { %>
+          <a class="content-only-a" href="/admin/">
+            <button class="special-button">Open Admin Panel</button>
+          </a>
+          <% } %>
+
+          <% } else { %>
+          <a class="content-only-a" href="/login/">
+            <button id="sign-in" class="special-button header-right">Sign In</button>
+          </a>
+          <a class="content-only-a" href="/register/">
+            <button class="special-button">Create Account</button>
+          </a>
+          <% } %>
+
+        </div>
+
+      </header>
+    </div>
+    <div id="welcome">
+
+      <div id="main-nav-box">
+      </div>
+
+      <div id="intro">
+        <div id="left-box">
+          <ul class="tabs">
+            <a onclick="switchTab('all', 'type')">
+              <li class="tab first <%= (SearchType === "all") ? "active" : "" %>">
+                All
+              </li>
+            </a>
+            <a onclick="switchTab('project', 'type')">
+              <li class="tab <%= (SearchType === "project") ? "active" : "" %>">
+                Projects
+              </li>
+            </a>
+            <a onclick="switchTab('user', 'type')">
+              <li class="tab <%= (SearchType === "user") ? "active" : "" %>">
+                Users
+              </li>
+            </a>
+            <a onclick="switchTab('admin', 'type')">
+              <li class="tab <%= (SearchType === "admin") ? "active" : "" %>">
+                Admin Users
+              </li>
+            </a>
+
+            <a onclick="switchTab('board', 'type')">
+              <li class="tab last <%= (SearchType === "board") ? "active" : "" %>">
+                Boards
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div id="right-box">
+          <div class="box-head">
+            <h1 class="center">Search <img class="sticker" src="/Images/wSearch.png"></h1>
+          </div>
+          <div id="box-body">
+            <div id="box-body-top">
+              <form>
+                <div style="display: flex; padding-bottom: 12px;">
+                  <input type="search" name="q" value="<%= q %>">
+                  <button id="search-button" type="submit" style="padding: 5px 12px !important;"><img height="15px" src="/Images/wSearch.svg"></button>
+                </div>
+                Sort By:
+                <% if (SearchType === "all") { %>
+                <select name="sort">
+                  <option <%= (sort === "All")  ? "selected" : "" %>>All</option>
+                  <option <%= (sort === "Popular") ? "selected" : "" %>>Popular</option>
+                  <option <%= (sort === "Trending") ? "selected" : "" %>>Trending</option>
+                  <option <%= (sort === "New") ? "selected" : "" %>>New</option>
+                  <option <%= (sort === "Not Popular") ? "selected" : "" %>>Not Popular</option>
+                </select>
+                <input name="type" value="all" style="display: none;">
+                <% } else if (SearchType === "project") { %>
+                <select name="project_type" value="<%= project_type %>">
+                  <option <%= (project_type === "All") ? "selected" : "" %>>All</option>
+                  <option <%= (project_type === "CocoScript")  ? "selected" : "" %>>CocoScript</option>
+                  <option <%= (project_type === "Video") ? "selected" : "" %>>Video</option>
+                  <option <%= (project_type === "Picture") ? "selected" : "" %>>Picture</option>
+                  <option <%= (project_type === "Audio") ? "selected" : "" %>>Audio</option>
+                </select>
+
+                <select name="sort" value="<%= sort %>">
+                  <option <%= (sort === "All")  ? "selected" : "" %>>All</option>
+                  <option <%= (sort === "Most Views")  ? "selected" : "" %>>Most Views</option>
+                  <option <%= (sort === "Most Comments")  ? "selected" : "" %>>Most Comments</option>
+                  <option <%= (sort === "Most Likes")  ? "selected" : "" %>>Most Likes</option>
+                  <option <%= (sort === "Most Favorites") ? "selected" : "" %>>Most Favorites</option>
+                  <option <%= (sort === "Least Views") ? "selected" : "" %>>Least Views</option>
+                  <option <%= (sort === "Least Comments") ? "selected" : "" %>>Least Comments</option>
+                  <option <%= (sort === "Least Likes") ? "selected" : "" %>>Least Likes</option>
+                  <option <%= (sort === "Least Favorites") ? "selected" : "" %>>Least Favorites</option>
+                  <option <%= (sort === "Popular") ? "selected" : "" %>>Popular</option>
+                  <option <%= (sort === "Trending") ? "selected" : "" %>>Trending</option>
+                  <option <%= (sort === "New Projects") ? "selected" : "" %>>New Projects</option>
+                </select>
+
+                <input name="type" value="project" style="display: none;">
+                <% } else if (SearchType === "user") { %>
+                <select name="sort" value="<%= sort %>">
+                  <option <%= (sort === "Popular") ? "selected" : "" %>>Popular</option>
+                  <option <%= (sort === "Trending") ? "selected" : "" %>>Trending</option>
+                  <option <%= (sort === "New users") ? "selected" : "" %>>New users</option>
+                  <option <%= (sort === "Most Followers") ? "selected" : "" %>>Most Followers</option>
+                  <option <%= (sort === "Least Followers") ? "selected" : "" %>>Least Followers</option>
+                </select>
+                Role:
+                <select name="role" value="<%= role %>">
+                  <option name="user" <%= (role === "") ? "selected" : "" %>>User</option>
+                  <option name="new_user" <%= (role === "") ? "selected" : "" %>>New User</option>
+                </select>
+                <input name="type" value="user" style="display: none;">
+                <% } else if(SearchType === "admin") { %>
+                <select name="role" value="<%= role %>">
+                  <option name="admin" <%= (role === "") ? "selected" : "" %>>Admin</option>
+                  <option name="team" <%= (role === "") ? "selected" : "" %>>Team</option>
+                </select>
+                <input name="type" value="admin" style="display: none;">
+                <% } else if (SearchType === "board") { %>
+                <select name="sort" value="<%= sort %>">
+                  <option <%= (sort === "") ? "selected" : "All" %>>All</option>
+                  <option <%= (sort === "") ? "selected" : "Most Views" %>>Most Views</option>
+                  <option <%= (sort === "") ? "selected" : "Most Comments" %>>Most Comments</option>
+                  <option <%= (sort === "") ? "selected" : "Most Likes" %>>Most Likes</option>
+                  <option <%= (sort === "") ? "selected" : "Most Favorites" %>>Most Favorites</option>
+                  <option <%= (sort === "") ? "selected" : "Most Chats" %>>Most Chats</option>
+                  <option <%= (sort === "") ? "selected" : "Most Posts" %>>Most Posts</option>
+                  <option <%= (sort === "") ? "selected" : "Most Threads" %>>Most Threads</option>
+                  <option <%= (sort === "") ? "selected" : "Least Views" %>>Least Views</option>
+                  <option <%= (sort === "") ? "selected" : "Least Comments" %>>Least Comments</option>
+                  <option <%= (sort === "") ? "selected" : "Least Likes" %>>Least Likes</option>
+                  <option <%= (sort === "") ? "selected" : "Least Favorites" %>>Least Favorites</option>
+                  <option <%= (sort === "") ? "selected" : "Least Chats" %>>Least Chats</option>
+                  <option <%= (sort === "") ? "selected" : "Least Posts" %>>Least Posts</option>
+                  <option <%= (sort === "") ? "selected" : "Least Threads" %>>Least Threads</option>
+                  <option <%= (sort === "") ? "selected" : "Popular" %>>Popular</option>
+                  <option <%= (sort === "") ? "selected" : "Trending" %>>Trending</option>
+                  <option <%= (sort === "") ? "selected" : "New Boards" %>>New Boards</option>
+                  <option <%= (sort === "") ? "selected" : "Most Followers" %>>Most Followers</option>
+                  <option <%= (sort === "") ? "selected" : "Least Followers" %>>Least Followers</option>
+                </select>
+                <input name="type" value="board" style="display: none;">
+                <% } else { %>
+                <% } %>
+              </form>
+            </div>
+            <p class="Welcome-text center">Search Results:</p>
+            <div id="search-results">
+              <% if (SearchType === "board") { %>
+              <div class="center">
+                <img src="/Stickers/Board.png" alt="Board Sticker" height="300px">
+                <h3>Boards are not yet implemented.</h3>
+                Sorry, boards do not yet exist.
+                So boards cannot be searched.
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--<footer class="box-product">
+        <div id="footer-content">
+          <p>Coco.ink © 2025 Coco Ink Software. All rights reserved.</p>
+        </div>
+        <h4>
+          Want to know more about me? <a href="/faq">FactsAndQuestions</a>.
+          You can also see my <a href="/family">family</a>.
+        </h4>
+      </footer>-->
+
+    </div>
+
+    <div id="error-container" class="error-container-hide">
+      Some Scripts Have Probably Crashed
+      <div id="e" class="error big-box"></div>
+    </div>
+    <!---->
+    <script src="/Ambler.mp3Sound.js"></script>
+    <script src="/JS/global.js"></script>
+    <script src="/JS/@.js"></script>
+    <!---->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        /* Aa *
+        showError(); /* Aa */
+        /* Aa */
+        showMessage();
+      });
+
+      function showError() {
+        document.getElementById("e").innerHTML = `Oops! Something Crashed!`;
+        var errorContainer = document.getElementById("error-container");
+        errorContainer.classList.remove("error-container-hide");
+        errorContainer.classList.add("error-container-show");
+      }
+
+      function hideError() {
+        document.getElementById("e").innerHTML = ``;
+        var errorContainer = document.getElementById("error-container");
+        errorContainer.classList.remove("error-container-show");
+        errorContainer.classList.add("error-container-hide");
+      }
+
+      function showMessage(messageAtIndex) {
+        var messageBox;
+        switch (messageAtIndex) {
+          case 5:
+            //
+            break;
+        }
+      }
+    </script>
+    <script>
+      console.log(`At: ${window.location.pathname}`);
+      if (window.location.pathname.includes('index.html')) window.location.href = window.location.pathname.replace('index.html', '');
+    </script>
+    <!--<script src="/Scripts/spawnNewstuff.js" type="module"></script>-->
+    <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+    <!--<script type="module" src="/Scripts/bodyScripts.js"></script>-->
+    <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <script>
+      const errorMessageContainer = document.getElementById("error-container");
+
+      function clearError() {
+        errorMessageContainer.classList.remove("error-container-show");
+        errorMessageContainer.classList.add("error-container-hide");
+        document.getElementById("e").innerHTML = ``;
+        var errorContainer = document.getElementById("error-container");
+        errorContainer.classList.remove("error-container-show");
+        errorContainer.classList.add("error-container-hide");
+      };
+
+      clearError();
+    </script>
+    <script src="/JS/Search.js"></script>
+</body>
+
+</html>
