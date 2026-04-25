@@ -19,6 +19,9 @@ class SubdomainForeignConnection {
             const res = await fetch(url, {
                 method: "GET",
                 credentials: "include", // IMPORTANT: send 
+                headers: {
+                    "Access-Control-Allow-Origin": "*"
+                }
             });
 
             const responseText = await res.text();
