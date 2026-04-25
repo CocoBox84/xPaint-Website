@@ -106,10 +106,10 @@ try {
 
     const Sidebar = `
   <div id="sidebar-buttons">
-    <button class="sidebar-button" id="sidebar-about-button"><img src="/Stickers/Old Coco Icon.stikr"><br>Coco</button>
-    <button class="sidebar-button" id="sidebar-help-button"><img src="/Stickers/Question Mark.stikr"><br>Help</button>
-    <button class="sidebar-button" id="sidebar-messages-button"><img src="/Stickers/Mail.stikr"><br>Mailbox</button>
-    <button class="sidebar-button" id="sidebar-close-button"><img src="/Stickers/Close.stikr"><br>Close</button>
+    <button class="sidebar-button" id="sidebar-about-button"><img src="Stickers/Old Coco Icon.stikr"><br>Coco</button>
+    <button class="sidebar-button" id="sidebar-help-button"><img src="Stickers/Question Mark.stikr"><br>Help</button>
+    <button class="sidebar-button" id="sidebar-messages-button"><img src="Stickers/Mail.stikr"><br>Mailbox</button>
+    <button class="sidebar-button" id="sidebar-close-button"><img src="Stickers/Close.stikr"><br>Close</button>
   </div>
   <iframe id="sidebar-content" src="about:blank">
   </iframe>
@@ -126,13 +126,13 @@ try {
         sidebar.classList.add("open");
         switch (page) {
             case "about": {
-                document.getElementById("sidebar-content").src = "/sidebar/help/screens/about/";
+                document.getElementById("sidebar-content").src = "//www.cocoink.ink/sidebar/help/screens/about/";
             } break;
             case "help": {
-                document.getElementById("sidebar-content").src = "/sidebar/help/screens/help/";
+                document.getElementById("sidebar-content").src = "//www.cocoink.ink/sidebar/help/screens/help/";
             } break;
             case "messages": {
-                document.getElementById("sidebar-content").src = "/sidebar/help/screens/mailbox/?" + params;
+                document.getElementById("sidebar-content").src = "//www.cocoink.ink/sidebar/help/screens/mailbox/?" + params;
             } break;
             case "close": {
                 document.getElementById("sidebar-content").src = "about:blank";
@@ -154,7 +154,7 @@ try {
         const reason = prompt("Why are you reporting this " + type + "?");
         if (!reason) return;
 
-        const res = await fetch(`/api/report/${type}`, {
+        const res = await fetch(`//www.cocoink.ink/api/report/${type}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
