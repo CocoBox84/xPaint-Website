@@ -1,29 +1,40 @@
 // SubdomainForeignConnection.js
 
+const CocoUrl = (true) ? `https://www.cocoink.ink` : "http://127.0.0.1:5500";
+
 class SubdomainForeignConnection {
     constructor(name) {
         // Example: name = "xPaint"
         this.name = name;
 
         // Backend endpoint for this foreign module
-        this.base = `https://www.cocoink.ink/f/${name}`;
+        this.base = `${CocoUrl}/f/${name}`;
     }
 
     // Generic GET request
     async get(path, usebase=false) {
         try {
-            const url = !usebase ? `${this.base}${path}` : `https://www.cocoink.ink${path}`;
+            const url = !usebase ? `${this.base}${path}` : `${CocoUrl}${path}`;
 
             const res = await fetch(url, {
                 method: "GET",
                 credentials: "include", // IMPORTANT: send 
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
             });
 
-            return res.json();
-        } catch {
+            const responseText = await res.text();
+
+            console.log(responseText);
+
+            if (responseText === "Not logged in") {
+                console.log("Nof user");
+                return null;
+            }
+
+            console.log("Continue");
+
+            return JSON.parse(responseText);
+        } catch (e) {
+            console.log(e);
             return null;
         }
     }
@@ -59,7 +70,7 @@ class SubdomainForeignConnection {
         }
 
         // Not logged in → redirect to main site login
-        window.location.href = "https://www.cocoink.ink/login?redirect=" + encodeURIComponent(window.location.href);
+        window.location.href = `${CocoUrl}/login?redirect=${encodeURIComponent(window.location.href)}`;
     }
 
     async isLoggedIn() {
