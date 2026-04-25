@@ -18,10 +18,7 @@ class SubdomainForeignConnection {
 
             const res = await fetch(url, {
                 method: "GET",
-                credentials: "include", // IMPORTANT: send 
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
+                credentials: "include" // IMPORTANT: send 
             });
 
             const responseText = await res.text();
@@ -51,8 +48,7 @@ class SubdomainForeignConnection {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(data)
             });
