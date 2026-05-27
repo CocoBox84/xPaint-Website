@@ -41,7 +41,7 @@ class Sound {
     }
 }*/
 
-const Ambler = new Audio("/Ambler.mp3");
+const Ambler = new Audio("/Seaside_Factory.wav");
 Ambler.loop = true;
 Ambler.volume = 0.1;
 

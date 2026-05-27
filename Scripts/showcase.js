@@ -20,30 +20,30 @@ var hasPlugins = false;
 
  document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
-        const scratch = document.getElementById("player");
-        scratch.classList.remove("scratch-fullscreen");
-        scratch.classList.add("scratch-embedded");
+        const player = document.getElementById("player");
+        player.classList.remove("player-fullscreen");
+        player.classList.add("player-embedded");
     });
  });
 
 function JSsetPresentationMode(p1) {
     console.log(p1);
     const object = document.getElementById("Player");
-    const scratch = document.getElementById("scratch");
+    const Player = document.getElementById("player");
     console.log("I'm Interacting With A swf File!");
     if (isFullScreen) {
         isFullScreen = false;
         object.classList.remove("player-fullscreen");
         object.classList.add("player-embedded");
 
-        scratch.classList.remove("scratch-fullscreen");
-        scratch.classList.add("scratch-embedded");
+        Player.classList.remove("Player-fullscreen");
+        Player.classList.add("Player-embedded");
     } else {
         isFullScreen = true;
         object.classList.add("player-fullscreen");
         object.classList.remove("player-embedded");
 
-        scratch.classList.add("scratch-fullscreen");
-        scratch.classList.remove("scratch-embedded");
+        Player.classList.add("Player-fullscreen");
+        Player.classList.remove("Player-embedded");
     }
 }

@@ -4,20 +4,14 @@ Jose De Jesus(Great-Grandpa), Jose De Jesus 2 (Grandpa), Jose De Jesus 3 (Father
 I Will Leave This Comment Here Forever, In The Websites HTML Files. - Nino
  Thu Jan 16 6:32:42 2025 AD. Welcome To The Official Coco Website!*/
 
- #page-wrapper {
-    background-color: #1b9ed8;
-    margin: auto;
-    padding: 12px;
-    width: 1240px;
-    height: 3000px;
-    margin-top: 50px;
-    background-image: url("https://web.archive.org/web/20180910224244im_/https://cdn.scratch.mit.edu/scratchr2/static/__a42f0ee5757a5592765778443d9ddd7f__/images/scratch-bg.png");
- }
+/* 
+    5/27/2026 - Nino: 
+        "Still can't believe I wrote that, also he's still alive. We don't go down that easily.
+        Also the message was not staying forever, I removed it way before the site was deployed, but I forgot about
+        this file I guess. (It was at the top of every file!)"
+*/
 
 .showcase-container {
-    width: 1042px;
-    margin: auto;
-    margin-top: 50px;
     padding: 0px;
 }
 
@@ -25,21 +19,8 @@ I Will Leave This Comment Here Forever, In The Websites HTML Files. - Nino
     background-color: white;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    height: 500px;
-    width: 1040px;
-    height: 526px;
     padding-top: 0px;
     border: 1px solid rgb(204, 204, 204);
-}
-
-#project-showcase {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-#box-head {
-    width: 1000px;
-    /*height: 78px;*/
 }
 
 #title {
@@ -59,7 +40,7 @@ I Will Leave This Comment Here Forever, In The Websites HTML Files. - Nino
 
 #button-container {
     display: grid;
-    grid-template-columns: 180px 150px 180px;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #votes {
@@ -194,7 +175,7 @@ I Will Leave This Comment Here Forever, In The Websites HTML Files. - Nino
     margin: 3px;
 }
 
-.scratch-2-tooltip {
+.tooltip {
     background-color: #1b9ed8;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -211,6 +192,15 @@ I Will Leave This Comment Here Forever, In The Websites HTML Files. - Nino
     -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
     box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+    visibility: hidden;
+}
+
+#Like button:hover + #tooltip-like {
+    visibility: visible;
+}
+
+#Favorite button:hover + #tooltip-favorite {
+    visibility: visible;
 }
 
 #bottom {
@@ -273,14 +263,12 @@ I Will Leave This Comment Here Forever, In The Websites HTML Files. - Nino
     height: 212.5px;*
 }/**/
 
-.scratch-embedded {
+.Player-embedded {
     width: 482px;
     height: 425px;
 }
 
-.scratch-fullscreen {
-    width: 482px;
-    height: 425px;
+.Player-fullscreen {
     top: 0;
     bottom: 20px;
     left: 0;
@@ -291,9 +279,9 @@ I Will Leave This Comment Here Forever, In The Websites HTML Files. - Nino
 }
 
 .player-embedded {
-    width: 482px;
-    height: 425px;
-    position: relative;
+    width: 98%;
+    height: 100%;
+    min-height: 480px;
 }
 
 .player-fullscreen {

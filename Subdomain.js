@@ -1,4 +1,5 @@
 const Subdomain = new XPaintConnection("xPaint", "https://www.cocoink.ink/f/xPaint/");
+
 async function onPageLoad(params) {
     const record = await Subdomain.isLoggedIn();
     console.log("User: ", record || "User is not logged in.");
