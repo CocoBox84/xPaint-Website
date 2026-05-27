@@ -206,13 +206,13 @@
                         <div id="stage">
                             <object id="Player">
                                     <object type="application/x-shockwave-flash"
-                                        data="/Scratch Projects/Coco Steamworks 1991 V1.0.swf"
-                                        adata="./Scratch.swf"
+                                        adata="/Scratch Projects/Coco Steamworks 1991 V1.0.swf"
+                                        data="./Scratch (2).swf"
                                         id="scratch" style="visibility: visible;">
                                         <param name="allowscriptaccess" value="always">
                                         <param name="allowfullscreen" value="true">
                                         <param name="wmode" value="direct">
-                                        <param name="menu" value="false">
+                                        <param name="menu" value="true">
                                         <param name="flashvars" value="autostart=false&amp;project_creator=ScratchUser206827&amp;project_modifiedDate=2013-05-16 13:30:04&amp;project_isPublished=false&amp;project_isNew=true&amp;extensionDevMode=false&amp;microworldMode=false&amp;project_title=Untitled%20Project&amp;debugOps=true&amp;debugOpCmd=a28ece154d930633afaaeacbe1e10227">
                                     </object>
 
@@ -221,6 +221,10 @@
                                         onclick="JSsetPresentationMode();">Enter/Exit Fullscreen</button>
                                 </div>
                             </object>
+                            <script>
+                                let Scratch = null;
+                                document.addEventListener("DOMContentLoaded", function() { Scratch = document.getElementById("Player"); });
+                            </script>
 
                         </div>
                         <div id="right-side"></div>

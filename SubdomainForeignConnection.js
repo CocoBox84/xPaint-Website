@@ -1,6 +1,6 @@
 // SubdomainForeignConnection.js
 
-const CocoUrl = (true) ? `https://cocoink.ink` : "http://127.0.0.1:5500";
+const CocoUrl = (true) ? `https://www.cocoink.ink` : "http://127.0.0.1:5500";
 
 class SubdomainForeignConnection {
     constructor(name) {
