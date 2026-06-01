@@ -1,3 +1,5 @@
+// JS/board/create.js
+
 const ruleAPI = new RulesApi();
 const rulesContainer = document.getElementById("rules-container");
 const addRuleBtn = document.getElementById("add-rule-btn");
