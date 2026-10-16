@@ -1,6 +1,6 @@
 // SubdomainForeignConnection.js
 
-// Why have more then one backend? I can't afford one.
+// Why have more then one backend? I can't afford any more.
 // So for any Coco subdomains, we connect through the main Coco backend, through
 // this frontend.
 
@@ -14,6 +14,10 @@ class SubdomainForeignConnection {
 
         // Backend endpoint for this foreign module
         this.base = `${CocoUrl}/f/${name}`;
+    }
+
+    static createSubdomain() {
+        return new this();
     }
 
     // Generic GET request
