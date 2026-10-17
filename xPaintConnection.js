@@ -11,3 +11,5 @@ class XPaintConnection extends SubdomainForeignConnection {
         return this.get("/api/mystuff/projects");
     }
 }
+
+SubdomainForeignConnection.connector = XPaintConnection;
