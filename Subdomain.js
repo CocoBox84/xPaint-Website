@@ -1,4 +1,4 @@
-const Subdomain = SubdomainForeignConnection.connector;
+const Subdomain = new SubdomainForeignConnection.connector();
 
 async function onPageLoad(e) {
     getAndDisplayUser();
