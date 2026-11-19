@@ -181,7 +181,7 @@ try {
         sidebar.classList.remove("navigation-box-closed", "navigation-box-open");
 
         // Inject sidebar HTML first
-        sidebar.innerHTML = Sidebar;
+        // sidebar.innerHTML = Sidebar;
 
         document.getElementById("sidebar-about-button").addEventListener("click", function () { navBoxOpen("about"); });
 

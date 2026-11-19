@@ -4,7 +4,7 @@
   <head>
     <title>xPaint.CocoInk.ink</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="Coco Icon/Old Coco Icon.ico">
+    <link rel="icon" type="image/x-icon" href="/xPaint.ico">
     <link href="CSS/homepage.css" rel="stylesheet">
     <link href="CSS/header.css" rel="stylesheet">
     <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        width: 100%;
+        width: 752px !important;
       }
 
       .products {
@@ -60,14 +60,11 @@
       .box-product {
         background-color: wheat;
         /*margin-bottom: 50px;*/
-        border-radius: 30px;
         padding: 12px;
         margin: 12px;
         margin-top: 100px;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
         overflow-y: auto;
-        display: grid;
-        grid-template-columns: 1fr 4fr;
       }
 
       #Coco {
@@ -116,6 +113,8 @@
                     margin-bottom: 50px;
                 }
                     */
+
+      /* See you later! */
     </style>
   </head>
 
@@ -180,46 +179,67 @@
         <div id="main-nav-box" class="navigation-box">
         </div>
 
+        <div class="user-box-head">
+          <img height="50px" src="xPaint Logo.png">
+          <p style="color: black; float: right;">Welcome to the Coco xPaint Website! <a href="//www.cocoink.ink/">Go to the Coco website.</a></p>
+        </div>
+
         <div id="intro" class="info-box">
-          <img class="Coco-logo" src="xPaint Logo.png">
-          <p class="Welcome-text">Welcome to the Coco xPaint Website!</p>
-          <a href="//www.cocoink.ink/">
-            <h2>Go to the Coco website.</h2>
-          </a>
-          <h2>Homepage music:</h2>
-          <h3>
+          <p>Homepage music:</p>
+          <p>
             Ambler Kevin MacLeod (incompetech.com)
             Licensed under Creative Commons: By Attribution 3.0 License
-            http://creativecommons.org/licenses/by/3.0/</h3>
-          <div class="big-box">
-            <div class="big-box-header">
-              <img class="Coco-logo" src="xPaint Logo.png">
+            http://creativecommons.org/licenses/by/3.0/</p>
+
+          <div class="content">
+            <div class="left">
+              <object data="//www.cocoink.ink/embed/projects/97/" type="text/html" width="100%" height="700px" style="border: black 1px solid; zoom: 50%;"></object>
+              <div class="cool-description" style="width: 100% !important;">A video explaining what Coco xPaint is.</div>
+              <div class="box-product">
+                <!--<p>I have to poop, i'll be back...</p>
+                <p>Ok, i'm done pooping.</p>-->
+                <h3 class="center">Projects</h3>
+                <div id="projects" class="project-grid">
+                </div>
+
+                <h3 class="center">Posts</h3>
+                <div>
+                  <ul>
+                    <li data-post-id="1" style="color: black !important;">
+                      <strong style="color: black !important;">Test post</strong>
+                      <p>{First 250 characters of the post}...</p>
+                      <p>by <a href="/user.html?user=Coco">Coco</a></p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <!----<dialog>Hello</dialog>-->
-            <p>What is a Coco xPaint? xPaint is a project being developed by us. (Me and God really.)
-              It will hopefully become a special tool: An animator, a code editor,
-              a Paint editor, a video editor, and a text editor. It uses the PaintPower engine
-              written in C#, you can find it here: <a href="PaintPower.html">PaintPower documentation</a>
-              Any Project made in the engine can be uploaded to the xPaint Website. Download the engine <a href="https://github.com/CocoBox84/PaintPower-Engine#">Here</a>.
-            </p>
-            <div class="cool-stuff">
+            <div class="right">
+              <h3>Links</h3>
+              <ul>
+                <li><a>Download</a></li>
+                <li><a>About</a></li>
+                <li><a>Help!</a></li>
+                <li><a>Projects</a></li>
+              </ul>
+              <a href="/download.html">
+                <button width="184px" style="align-content: center; justify-content: end;">
+                  <p style="float: left;">Download xPaint!</p>
+                  <img style="float: right;" height="40px" src="/Install xPaint.ico">
+                </button>
+              </a>
 
-              <div class="inner-big-box-object">
-                <object data="//www.cocoink.ink/embed/projects/97/" type="text/html" style="zoom: 0.9;" width="100%" height="100%"></object>
-              </div>
+              <h5 style="margin-top: 3px;">Icon made by my cousin</h5>
 
-              <div class="cool-text">
-                The xPaint Project. <a href="./download.html">Download here</a>.
-              </div>
-
-              <div class="cool-description">A video explaining what Coco xPaint is.</div>
-              <div class="cool-image">
-                <img src="Coco Icon/Old Coco Icon.svg">
-              </div>
-
+			  <form>
+			  <input type="text" placeholder="Project title">
+			  <button>Make new project</button>
+			  </form>
+			  <script></script>
             </div>
           </div>
 
+          <div style="clear: both;">&nbsp;</div>
         </div>
 
         <footer class="box-product">
@@ -252,6 +272,19 @@
       <script src="SubdomainForeignConnection.js"></script>
       <script src="xPaintConnection.js"></script>
       <script src="Subdomain.js"></script>
+	  <script src="JS/projects.js"></script>
+
+	  <script>
+		let newestProjectOffset = 0;
+		const offsetJump = 25;
+
+		document.addEventListener("DOMContentLoaded", async () => {
+			const projects = await get25FromServer(newestProjectOffset);
+			newestProjectOffset += offsetJump;
+
+			document.getElementById("projects").innerHTML = projects;
+		});
+	  </script>
   </body>
 
 </html>

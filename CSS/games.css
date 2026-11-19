@@ -153,8 +153,8 @@ object {
 
 .info-box {
     background-color: white;
-    border-radius: 30px;
     margin: 12px;
+	margin-bottom: 0px;
 }
 
 .bold-white {

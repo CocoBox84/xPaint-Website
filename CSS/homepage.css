@@ -131,10 +131,8 @@ object {
     background-color: rgb(244, 244, 244);
     overflow-y: auto;
     overflow-wrap: break-word;
-    width: 730px;
     height: 41.77px;
-    padding-left: 12px;
-    padding-right: 12px;
+	padding-left: 5px;
     padding-top: 10px;
     font-size: large;
     border-bottom-right-radius: 12px;
@@ -150,9 +148,9 @@ object {
 
 .info-box {
     background-color: white;
-    border-radius: 30px;
-    margin: 12px;
     border: rgb(202, 202, 202) 2px solid;
+	margin-bottom: 0px;
+	
 }
 
 .bold-white {
@@ -179,12 +177,10 @@ object {
 /* Ids */
 
 #intro {
-    padding: 40px;
     height: auto;
 }
 
 .intro {
-    padding: 40px;
     height: auto;
 }
 
@@ -198,26 +194,34 @@ object {
 
 .project-grid {
     display: grid;
-    border: 3px green dotted;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border: 3px rgb(70, 70, 70) solid;
+    grid-template-columns: 1fr 1fr;
     padding: 3px;
+	background-color: rgb(240, 240, 240);
+	margin: 6px;
 }
 
 .project-grid-item {
     gap: 7px;
     margin: 6px;
     border: 2px outset aliceblue;
-    height: 180px;
+	cursor: pointer;
+    /*height: 20px;*/
 }
 
 .project-grid-item:hover {
-    background-color: blueviolet;
-    color: brown;
+    background-color: rgb(214, 214, 214);
+    color: rgb(71, 148, 158);
+}
+
+.project-grid-item:active {
+	background-color: rgb(200, 200, 214);
+	border-style: inset;
 }
 
 .project-grid-item img {
     width: 257px !important;
-    height: 128px !important;
+    height: 28px !important;
     border: gainsboro 1px solid;
     display: block;
 }
@@ -226,7 +230,6 @@ object {
     overflow-y: auto;
     overflow-x: hidden;
     width: 278px;
-    height: 30px;
     display: block;
     line-break: anywhere;
     word-break: normal;
@@ -234,4 +237,6 @@ object {
 
 .project-title {
     text-shadow: rgba(0, 0, 0, 0.281) 2px 2px 12px;
+	margin: 0px;
+	padding: 0px;
 }

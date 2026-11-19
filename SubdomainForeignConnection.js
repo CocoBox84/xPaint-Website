@@ -27,7 +27,6 @@ class SubdomainForeignConnection {
     async get(path, usebase=false) {
         try {
             const url = !usebase ? `${this.base}${path}` : `${CocoUrl}${path}`;
-            console
 
             const res = await fetch(url, {
                 method: "GET",
