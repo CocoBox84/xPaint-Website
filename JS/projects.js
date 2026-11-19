@@ -46,7 +46,7 @@ async function get25PostsFromServer(offset) {
             <li onclick="redirectToPost(${post.id});" style="color: black !important; cursor: pointer;">
 				<strong style="color: black !important;">${post.title}</strong>
 				<p>${(post.content.length < 250) ? post.content : post.content.substring(0, 250)}</p>
-				<p>by <a href="/user.html?user={post.author}">${post.author}</a></p>
+				<p>by <a href="/user.html?user=${post.author}">${post.author}</a></p>
 			</li>
         `;
     }).join("");
