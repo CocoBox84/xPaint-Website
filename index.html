@@ -204,14 +204,29 @@
 
                 <h3 class="center">Posts</h3>
                 <div>
-                  <ul>
-                    <li data-post-id="1" style="color: black !important;">
-                      <strong style="color: black !important;">Test post</strong>
-                      <p>{First 250 characters of the post}...</p>
-                      <p>by <a href="/user.html?user=Coco">Coco</a></p>
-                    </li>
+                  <ul id="posts">
                   </ul>
                 </div>
+              </div>
+              <div>
+                <h3 class="center">Mystuff</h3>
+                <table>
+                  <tr>
+                    <td>
+                      <h4>My Projects</h4>
+                      <ul>
+                        <li>My First Project!</li>
+                      </ul>
+                    </td>
+                    <td style="margin-left: 10px;">
+                      <h4>My Posts</h4>
+                      <ul>
+                        <li>Test post</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+                <div style="clear: both;">&nbsp;</div>
               </div>
             </div>
             <div class="right">
@@ -329,12 +344,12 @@
                         }
 
                         status.innerHTML = `
-                <span style="color:green;">
-                    Project uploaded!
-                    ID:
-                    ${result.id}
-                </span>
-            `;
+							<span style="color:green;">
+								Project uploaded!
+								ID:
+								${result.id}
+							</span>
+						`;
 
                         document
                           .getElementById(
@@ -463,10 +478,11 @@
         const offsetJump = 25;
 
         document.addEventListener("DOMContentLoaded", async () => {
-          const projects = await get25FromServer(newestProjectOffset);
+          const projects = await get25ProjectsFromServer(newestProjectOffset);
           newestProjectOffset += offsetJump;
 
           document.getElementById("projects").innerHTML = projects;
+		  document.getElementById('posts').innerHTML = await get25PostsFromServer(0);
         });
       </script>
   </body>
