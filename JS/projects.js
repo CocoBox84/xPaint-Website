@@ -52,6 +52,59 @@ async function get25PostsFromServer(offset) {
     }).join("");
 }
 
+async function getMyProjectsFromServer(offset) {
+    const projects = await Subdomain.getMyNewestProjects(offset);
+
+    if (!projects) {
+        return "<p>Error loading projects!</p>";
+    }
+
+	if (projects === "Not logged in.") return projects;
+
+    if (projects.length < 1) {
+        return "<p>No projects to show...</p>";
+    }
+
+    return projects.map(project => {
+        return `
+			<li>
+				<div class="project-grid-item" onclick="redirectToProject('${project.id}')">
+					<p class="project-title">${project.title}</p>
+				</div>
+			</li>
+        `;
+    }).join("");
+}
+
+async function getMyPostsFromServer(offset) {
+    const posts = await Subdomain.getMyNewestPosts(offset);
+
+	console.log(posts);
+
+    if (!posts) {
+        return "<p>Error loading posts!</p>";
+    }
+
+    if (posts.length < 1) {
+        return "<p>No posts to show...</p>";
+    }
+
+    return posts.map(post => {
+        return `
+            <li onclick="redirectToPost(${post.id});" style="color: black !important; cursor: pointer;">
+				<strong style="color: black !important;">${post.title}</strong>
+				<p>${(post.content.length < 250) ? post.content : post.content.substring(0, 250)}</p>
+			</li>
+        `;
+    }).join("");
+}
+
+async function getProjectById(id) {}
+
+async function getPostById(id) {
+	return await Subdomain.get(`/api/posts/${id}/`);
+}
+
 async function redirectToProject(id) {
 	window.location.href = '/project.html?id=' + id;
 }

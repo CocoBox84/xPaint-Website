@@ -39,7 +39,7 @@ class SubdomainForeignConnection {
 
             console.log(responseText);
 
-            if (responseText === "Not logged in") {
+            if (responseText === "Not logged in" || responseText == "Not logged in.") {
                 console.log("Nof user");
                 return null;
             }

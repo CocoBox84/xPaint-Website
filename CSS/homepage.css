@@ -203,10 +203,10 @@ object {
 
 .project-grid-item {
     gap: 7px;
-    margin: 6px;
+    margin: 8px;
     border: 2px outset aliceblue;
 	cursor: pointer;
-    /*height: 20px;*/
+    padding: 5px;
 }
 
 .project-grid-item:hover {

@@ -61,6 +61,14 @@ class XPaintConnection extends SubdomainForeignConnection {
 	async get25NewestPosts(offset = 0) {
 		return await this.get('/api/posts/?offset=' + offset);
 	}
+
+	async getMyNewestProjects(offset = 0) {
+		return await this.listMyProjects();
+	}
+
+	async getMyNewestPosts(offset = 0) {
+		return await this.get("/api/mystuff/posts/?offset=" + offset);
+	}
 }
 
 SubdomainForeignConnection.connector = XPaintConnection;

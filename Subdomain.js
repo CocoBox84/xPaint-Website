@@ -1,6 +1,7 @@
 // Subdomain.js
 
 const Subdomain = new SubdomainForeignConnection.connector();
+let username = "";
 
 async function onPageLoad(e) {
     getAndDisplayUser();
@@ -16,6 +17,8 @@ async function displayUser(record) {
 
     console.log("User: ", record || "User is not logged in.");
     if (!record) return;
+
+	username = record.username;
     right_header.innerHTML = `<span style="margin-right: 45px;"><p style="align-content: center !important; justify-content: center !important;"><span style="margin-right: 10px;">Logged in as</span><a href="${CocoUrl}/users/${record?.username}">${(record?.username?.length < 37) ? record?.username : `${record?.username?.substring(0, 37)}...`} <img style="margin-left: 10px; margin-top: -10px; position: absolute; border: darkgray 1px solid; border-radius: 10px; background-color: white;" width="30px" height="30px" src="${CocoUrl}/users/${record?.username}/pfp"></a></p></span>`;
 }
 
@@ -61,6 +64,8 @@ async function getAndDisplayUser() {
             displayUser(fresh);
             return;
         }
+
+		displayUser(null);
     }
 
     displayUser("fail");
