@@ -15,7 +15,7 @@ async function get25ProjectsFromServer(offset) {
         return `
             <div class="project-grid-item" onclick="redirectToProject('${project.id}')">
                 <p class="project-title">${project.title}</p>
-                by <a href="/user.html?user=${project.creators[0]}">${project.creators[0]}</a>
+                by <a href="/user.html?username=${project.creators[0]}">${project.creators[0]}</a>
                 ${
                     project.creators.length > 1
                         ? `<p>With help from: ${helpers}</p>`
@@ -46,7 +46,7 @@ async function get25PostsFromServer(offset) {
             <li onclick="redirectToPost(${post.id});" style="color: black !important; cursor: pointer;">
 				<strong style="color: black !important;">${post.title}</strong>
 				<p>${(post.content.length < 250) ? post.content : post.content.substring(0, 250)}</p>
-				<p>by <a href="/user.html?user=${post.author}">${post.author}</a></p>
+				<p>by <a href="/user.html?username=${post.author}">${post.author}</a></p>
 			</li>
         `;
     }).join("");
