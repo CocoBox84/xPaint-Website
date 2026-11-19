@@ -4,6 +4,8 @@
 // So for any Coco subdomains, we connect through the main Coco backend, through
 // this frontend.
 
+// In dev mode, make sure to use port 5501 for xPaint frontend.
+
 const CocoUrl = (document.location.host == "xpaint.cocoink.ink") ? `https://www.cocoink.ink` : "http://127.0.0.1:5500";
 console.log(document.location.host);
 

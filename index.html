@@ -231,11 +231,195 @@
 
               <h5 style="margin-top: 3px;">Icon made by my cousin</h5>
 
-			  <form>
-			  <input type="text" placeholder="Project title">
-			  <button>Make new project</button>
-			  </form>
-			  <script></script>
+              <div class="box-product">
+
+                <h3>Create New Project</h3>
+
+                <form id="project-upload-form">
+
+                  <p>
+                    <input id="project-title" type="text" placeholder="Project title" required>
+                  </p>
+
+                  <p>
+                    <textarea id="project-description" placeholder="Project description" rows="5" style="width:100%;"></textarea>
+                  </p>
+
+                  <p>
+                    <input id="project-file" type="file" accept=".xpaint" required>
+                  </p>
+
+                  <button type="submit" class="special-button">
+                    Upload Project
+                  </button>
+
+                </form>
+
+                <div id="project-upload-status">
+                </div>
+
+              </div>
+
+              <script>
+                document
+                  .getElementById(
+                    "project-upload-form"
+                  )
+                  .addEventListener(
+                    "submit",
+                    async (e) => {
+
+                      e.preventDefault();
+
+                      const status =
+                        document.getElementById(
+                          "project-upload-status"
+                        );
+
+                      const title =
+                        document.getElementById(
+                          "project-title"
+                        ).value.trim();
+
+                      const description =
+                        document.getElementById(
+                          "project-description"
+                        ).value.trim();
+
+                      const file =
+                        document.getElementById(
+                          "project-file"
+                        ).files[0];
+
+                      if (!title) {
+                        status.innerHTML =
+                          "Project title required.";
+                        return;
+                      }
+
+                      if (!file) {
+                        status.innerHTML =
+                          "Select a .xpaint file.";
+                        return;
+                      }
+
+                      status.innerHTML =
+                        "Uploading...";
+
+                      try {
+
+                        const result =
+                          await Subdomain
+                          .createNewProject(
+                            title,
+                            description,
+                            file
+                          );
+
+                        console.log(result);
+
+                        if (
+                          !result ||
+                          result.status !== "ok"
+                        ) {
+                          throw new Error(
+                            result?.status ||
+                            "Upload failed"
+                          );
+                        }
+
+                        status.innerHTML = `
+                <span style="color:green;">
+                    Project uploaded!
+                    ID:
+                    ${result.id}
+                </span>
+            `;
+
+                        document
+                          .getElementById(
+                            "project-upload-form"
+                          )
+                          .reset();
+
+                      } catch (err) {
+
+                        console.error(err);
+
+                        status.innerHTML = `
+                <span style="color:red;">
+                    ${err.message}
+                </span>
+            `;
+                      }
+                    }
+                  );
+              </script>
+
+              <div class="box-product">
+
+                <h3>Create Forum Post</h3>
+
+                <form id="forum-post-form">
+
+                  <input id="forum-title" type="text" placeholder="Post title" required>
+
+                  <br><br>
+
+                  <textarea id="forum-content" rows="8" style="width:100%;" placeholder="Write a post..." required></textarea>
+
+                  <br><br>
+
+                  <button type="submit" class="special-button">
+                    Create Post
+                  </button>
+
+                </form>
+
+                <div id="forum-status"></div>
+
+              </div>
+
+              <script>
+                document
+                  .getElementById(
+                    "forum-post-form"
+                  )
+                  .addEventListener(
+                    "submit",
+                    async (e) => {
+
+                      e.preventDefault();
+
+                      const title =
+                        document.getElementById(
+                          "forum-title"
+                        ).value.trim();
+
+                      const content =
+                        document.getElementById(
+                          "forum-content"
+                        ).value.trim();
+
+                      const result =
+                        await Subdomain
+                        .createPost(
+                          title,
+                          content
+                        );
+
+                      document
+                        .getElementById(
+                          "forum-status"
+                        )
+                        .innerHTML =
+                        result?.status === "ok" ?
+                        "Post created." :
+                        (result?.status || "Failed");
+                    }
+                  );
+              </script>
+
             </div>
           </div>
 
@@ -272,19 +456,19 @@
       <script src="SubdomainForeignConnection.js"></script>
       <script src="xPaintConnection.js"></script>
       <script src="Subdomain.js"></script>
-	  <script src="JS/projects.js"></script>
+      <script src="JS/projects.js"></script>
 
-	  <script>
-		let newestProjectOffset = 0;
-		const offsetJump = 25;
+      <script>
+        let newestProjectOffset = 0;
+        const offsetJump = 25;
 
-		document.addEventListener("DOMContentLoaded", async () => {
-			const projects = await get25FromServer(newestProjectOffset);
-			newestProjectOffset += offsetJump;
+        document.addEventListener("DOMContentLoaded", async () => {
+          const projects = await get25FromServer(newestProjectOffset);
+          newestProjectOffset += offsetJump;
 
-			document.getElementById("projects").innerHTML = projects;
-		});
-	  </script>
+          document.getElementById("projects").innerHTML = projects;
+        });
+      </script>
   </body>
 
 </html>
